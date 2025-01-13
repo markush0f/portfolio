@@ -1,0 +1,50 @@
+---
+const experienceData = [
+  {
+    title: "Prácticas en Seahorse",
+    period: "Abril 2024 - Julio 2024 (4 meses)",
+    description: [
+      "Colaboré en el desarrollo de soluciones para clientes, utilizando tecnologías como React y Node.js.",
+      "Realicé pruebas y mejoras en las aplicaciones web existentes.",
+      "Trabajé de cerca con el equipo para optimizar procesos y mejorar la eficiencia del código.",
+    ],
+  },
+  {
+    title: "Desarrollador Full Stack en Eviden",
+    period: "Septiembre 2024 - Actualidad",
+    description: [
+      "Trabajo como desarrollador full stack, utilizando Angular para el frontend y Spring Boot para el backend.",
+      "Participo en el desarrollo de aplicaciones web complejas, desde el diseño hasta la implementación de funcionalidades.",
+      "Trabajo en la integración de la base de datos con MySQL y en la creación de APIs RESTful para aplicaciones escalables.",
+    ],
+  },
+];
+---
+
+<section class="py-10" id="experience" data-aos="zoom-in-right">
+    <div class="max-w-4xl mx-auto relative">
+      <h2 class="text-3xl font-semibold text-center mb-6">EXPERIENCE</h2>
+      {/* Línea continua */}
+      <div class="absolute left-5 top-0 bottom-0 w-[1.8px] bg-gray-500 "></div>
+      <div class="space-y-8 pl-10">
+        {
+          experienceData.map((exp, index) => (
+            <div class="relative">
+              {/* Punto para cada experiencia */}
+              <div class="absolute -left-[1.65rem] top-2 w-4 h-4 bg-highlighted rounded-full"></div>
+              <div class="px-6  rounded-lg">
+                <h3 class="text-xl font-semibold text-highlighted">{exp.title}</h3>
+                <p class="text-gray-400">{exp.period}</p>
+                <ul class="list-disc pl-5 mt-2 text-gray-300">
+                  {exp.description.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  
