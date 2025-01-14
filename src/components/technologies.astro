@@ -1,0 +1,65 @@
+---
+const technologies = [
+  {
+    frameworks: ["angular.svg", "nestjs.svg", "spring.svg", "react.svg"],
+    tests: ["Junit", "jest.svg"],
+    databases: ["mysql.svg", "mongodb.svg"],
+    others: ["git.svg, docker.svg"],
+  },
+];
+---
+
+<div data-aos="zoom-in-left">
+  <h2 class="text-3xl font-semibold text-center mb-6">TECHNOLOGIES</h2>
+  <div class="flex flex-wrap justify-center gap-10">
+    {technologies.map((tech) => (
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex gap-10">
+          <div>
+            <h3 class="text-xl font-semibold text-highlighted">Frameworks</h3>
+            <ul class="flex gap-4">
+              {tech.frameworks.map((framework) => (
+                <li>
+                  <img src={`/icons/technologies/${framework}`} alt="" width="40" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-highlighted">Databases</h3>
+            <ul class="flex gap-4">
+              {tech.databases.map((database) => (
+                <li>
+                  <img src={`/icons/technologies/${database}`} alt="" width="40" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="flex gap-10">
+          <div>
+            <h3 class="text-xl font-semibold text-highlighted">Tests</h3>
+            <ul class="flex gap-4">
+              {tech.tests.map((test) => (
+                <li>
+                  <img src={`/icons/technologies/${test}`} alt="" width="40" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-highlighted">Others</h3>
+            <ul class="flex gap-4">
+              {tech.others.map((other) => (
+                <li>
+                  <img src={`/icons/technologies/${other}`} alt="" width="40" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
