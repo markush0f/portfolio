@@ -2,57 +2,56 @@
 const technologies = [
   {
     frameworks: ["angular.svg", "nestjs.svg", "spring.svg", "react.svg"],
-    tests: ["Junit", "jest.svg"],
+    tests: ["junit.png", "jest.svg"],
     databases: ["mysql.svg", "mongodb.svg"],
     others: ["git.svg, docker.svg"],
   },
 ];
 ---
-
 <div data-aos="zoom-in-left">
-  <h2 class="text-3xl font-semibold text-center mb-6">TECHNOLOGIES</h2>
-  <div class="flex flex-wrap justify-center gap-10">
+  <h2 class="text-3xl font-semibold text-center mb-10">TECHNOLOGIES</h2>
+  <div class="flex flex-wrap justify-center gap-10 md:gap-16">
     {technologies.map((tech) => (
-      <div class="flex flex-col items-center gap-4">
-        <div class="flex gap-10">
-          <div>
-            <h3 class="text-xl font-semibold text-highlighted">Frameworks</h3>
-            <ul class="flex gap-4">
+      <div class="flex flex-col items-center p-6 sm:p-8 lg:p-10 rounded-lg h-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 w-full">
+          <!-- Primera fila -->
+          <div class="text-center">
+            <h3 class="text-lg sm:text-xl font-semibold text-highlighted mb-4 sm:mb-6">Frameworks</h3>
+            <ul class="flex justify-center gap-4 sm:gap-6">
               {tech.frameworks.map((framework) => (
                 <li>
-                  <img src={`/icons/technologies/${framework}`} alt="" width="40" />
+                  <img src={`/icons/technologies/${framework}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
                 </li>
               ))}
             </ul>
           </div>
-          <div>
-            <h3 class="text-xl font-semibold text-highlighted">Databases</h3>
-            <ul class="flex gap-4">
+          <div class="text-center">
+            <h3 class="text-lg sm:text-xl font-semibold text-highlighted mb-4 sm:mb-6">Databases</h3>
+            <ul class="flex justify-center gap-4 sm:gap-6">
               {tech.databases.map((database) => (
                 <li>
-                  <img src={`/icons/technologies/${database}`} alt="" width="40" />
+                  <img src={`/icons/technologies/${database}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-        <div class="flex gap-10">
-          <div>
-            <h3 class="text-xl font-semibold text-highlighted">Tests</h3>
-            <ul class="flex gap-4">
+          <!-- Segunda fila -->
+          <div class="text-center">
+            <h3 class="text-lg sm:text-xl font-semibold text-highlighted mb-4 sm:mb-6">Tests</h3>
+            <ul class="flex justify-center gap-4 sm:gap-6">
               {tech.tests.map((test) => (
                 <li>
-                  <img src={`/icons/technologies/${test}`} alt="" width="40" />
+                  <img src={`/icons/technologies/${test}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
                 </li>
               ))}
             </ul>
           </div>
-          <div>
-            <h3 class="text-xl font-semibold text-highlighted">Others</h3>
-            <ul class="flex gap-4">
+          <div class="text-center">
+            <h3 class="text-lg sm:text-xl font-semibold text-highlighted mb-4 sm:mb-6">Others</h3>
+            <ul class="flex justify-center gap-4 sm:gap-6">
               {tech.others.map((other) => (
                 <li>
-                  <img src={`/icons/technologies/${other}`} alt="" width="40" />
+                  <img src={`/icons/technologies/${other}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
                 </li>
               ))}
             </ul>
@@ -62,4 +61,3 @@ const technologies = [
     ))}
   </div>
 </div>
-
