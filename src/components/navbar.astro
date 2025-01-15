@@ -64,19 +64,19 @@
     // Detect scroll event and screen size
     window.addEventListener("scroll", function () {
       if (window.scrollY > 400 || window.innerWidth < 680) {
-        navbar.classList.add("bg-[#1e1e1e]");
-        scrollContent.classList.add("opacity-100", "translate-y-0");
-        scrollContent.classList.remove("opacity-0", "-translate-y-4");
+        navbar!.classList.add("bg-[#1e1e1e]");
+        scrollContent!.classList.add("opacity-100", "translate-y-0");
+        scrollContent!.classList.remove("opacity-0", "-translate-y-4");
       } else {
-        navbar.classList.remove("bg-[#1e1e1e]");
-        scrollContent.classList.add("opacity-0", "-translate-y-4");
-        scrollContent.classList.remove("opacity-100", "translate-y-0");
+        navbar!.classList.remove("bg-[#1e1e1e]");
+        scrollContent!.classList.add("opacity-0", "-translate-y-4");
+        scrollContent!.classList.remove("opacity-100", "translate-y-0");
       }
     });
 
-    menuToggle.addEventListener("click", function () {
-      menu.classList.toggle("hidden");
-      menu.classList.toggle("flex");
+    menuToggle!.addEventListener("click", function () {
+      menu!.classList.toggle("hidden");
+      menu!.classList.toggle("flex");
     });
   });
 </script>
