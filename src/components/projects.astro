@@ -8,15 +8,17 @@ const projects = [
       "Aplicación web creada que genera entidades para proyectos Spring Boot. Permite definir atributos y relaciones, valida datos en tiempo real y ofrece la descarga del código Java generado.",
     img: "projects/entity-generator.png",
     url: "entity-generator.vercel.app",
-    technologies: ["astro.svg","react.svg", "tailwind.svg"],
+    technologies: ["astro.svg", "react.svg", "tailwind.svg"],
   },
 ];
 ---
 
 <section class="py-10" id="experience" data-aos="zoom-in-right">
-  <div class="max-w-4xl mx-auto relative">
-    <h2 class="text-3xl font-semibold text-center mb-6">PROJECTS</h2>
-
+    <div class="max-w-4xl mx-auto relative">
+      <div class="flex mb-6">
+        <h2 class="text-3xl font-semibold text-center ">PROJECTS</h2>
+        <img src="/icons/code.svg" alt="" class="w-10 ml-6" />
+      </div>
     {
       projects.map((project, index) => (
         <div class="flex">
@@ -26,7 +28,7 @@ const projects = [
             class="w-96 rounded-xl"
           />
           <div class="pl-5">
-            <h1 class="font-bold text-2xl text-blue-600">{project.name}</h1>
+            <h1 class="font-bold text-2xl text-white">{project.name}</h1>
             <h2 class="w-96 text-[#e0e0e0] opacity-80">
               {project.description}
             </h2>

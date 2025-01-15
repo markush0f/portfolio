@@ -25,27 +25,32 @@ const experienceData = [
 ---
 
 <section class="py-10" id="experience" data-aos="zoom-in-right">
-    <div class="max-w-4xl mx-auto relative">
-      <h2 class="text-3xl font-semibold text-center mb-6 ">EXPERIENCE</h2>
-      <div class="absolute left-5 top-0 bottom-0 w-[1.8px] bg-gray-500 "></div>
-      <div class="space-y-8 pl-10">
-        {
-          experienceData.map((exp, index) => (
-            <div class="relative">
-              <div class="absolute -left-[1.65rem] top-2 w-4 h-4 bg-highlighted rounded-full"></div>
-              <div class="px-6  rounded-lg">
-                <h3 class="text-xl font-semibold text-highlighted">{exp.title}</h3>
-                <p class="text-gray-400">{exp.period}</p>
-                <ul class="list-disc pl-5 mt-2 text-gray-300">
-                  {exp.description.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+  <div class="max-w-4xl mx-auto relative">
+    <div class="flex mb-6 items-center">
+      <h2 class="text-3xl font-semibold text-center">Experience</h2>
+      <img src="/icons/code.svg" alt="" class="w-10 ml-6" />
     </div>
-  </section>
-  
+    <!-- Ajustamos la posición del borde para que no tape el título -->
+    <div class="absolute left-10 top-0 bottom-0 w-[1.8px] bg-gray-500"></div>
+    <div class="space-y-8 pl-14">
+      {
+        experienceData.map((exp, index) => (
+          <div class="relative">
+            <div class="absolute -left-[1.65rem] top-2 w-4 h-4 bg-highlighted rounded-full" />
+            <div class="px-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-highlighted">
+                {exp.title}
+              </h3>
+              <p class="text-gray-400">{exp.period}</p>
+              <ul class="list-disc pl-5 mt-2 text-gray-300">
+                {exp.description.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
