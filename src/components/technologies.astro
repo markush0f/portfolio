@@ -4,7 +4,7 @@ const technologies = [
     frameworks: ["angular.svg", "nestjs.svg", "spring.svg", "react.svg"],
     tests: ["junit.png", "jest.svg"],
     databases: ["mysql.svg", "mongodb.svg"],
-    others: ["git.svg, docker.svg"],
+    others: ["git.svg", "docker.svg", "linux.svg"],
   },
 ];
 ---
@@ -35,13 +35,12 @@ const technologies = [
               ))}
             </ul>
           </div>
-          <!-- Segunda fila -->
           <div class="text-center">
             <h3 class="text-lg sm:text-xl font-semibold text-highlighted mb-4 sm:mb-6">Tests</h3>
             <ul class="flex justify-center gap-4 sm:gap-6">
               {tech.tests.map((test) => (
                 <li>
-                  <img src={`/icons/technologies/${test}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
+                  <img src={`/icons/technologies/${test}`}  class="w-12 sm:w-14 h-12 sm:h-14" />
                 </li>
               ))}
             </ul>

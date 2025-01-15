@@ -5,13 +5,18 @@ import Home from "../components/home.astro";
 import Layout from "../layouts/Layout.astro";
 import "aos/dist/aos.css";
 import Technologies from "../components/technologies.astro";
+function stopPropagation() {
+  console.log("siuuu");
+}
 ---
 
 <Layout>
-  <Navbar />
+  <Navbar onClick={(e: any) => e.stopPropagation()} />
   <Home />
-  <div class="absolute bottom-16 lg:bottom-14 w-full flex justify-center animate-bounce">
-    <img src="/down.svg" alt="down icon" class="w-20 " />
+  <div
+    class="absolute bottom-16 lg:bottom-14 w-full flex justify-center animate-bounce"
+  >
+    <img src="/down.svg" alt="down icon" class="w-20" />
   </div>
   <Experience />
   <Technologies />
@@ -31,10 +36,8 @@ import Technologies from "../components/technologies.astro";
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (button) {
-              button.style.display = "none";
-            }
+          if (entry.isIntersecting && button) {
+            button.style.display = "none";
           } else {
             button.style.display = "flex";
           }
