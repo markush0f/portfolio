@@ -6,11 +6,13 @@ import Layout from "../layouts/Layout.astro";
 import "aos/dist/aos.css";
 import Technologies from "../components/technologies.astro";
 import Projects from "../components/projects.astro";
+import AboutMe from "../components/aboutMe.astro";
 ---
 
 <Layout>
   <Navbar onClick={(e: any) => e.stopPropagation()} />
   <Home />
+  <AboutMe/>
   <div
     class="absolute bottom-1 lg:bottom-14 w-full flex justify-center animate-bounce"
   >

@@ -21,13 +21,13 @@ const projects = [
     </div>
     {
       projects.map((project, index) => (
-        <div class="grid grid-cols-1 md:grid-cols-[3fr_1fr] lg:grid-cols-[2fr_1fr] gap-2 md:gap-8 lg:gap-12 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_1fr] gap-2 md:gap-8 lg:gap-12 mb-8">  {/* Modificado */}
           <img
             src="/projects/entity-generator.png"
             alt="entity-generator"
-            class="w-full rounded-xl mx-auto md:max-w-[95%]"
+            class="w-full rounded-xl mx-auto md:max-w-[90%] "
           />
-          <div class="mt-4 md:mt-0 text- text-left">
+          <div class="mt-4 md:mt-0 text-left">
             <h1 class="font-bold text-2xl text-white">{project.name}</h1>
             <h2 class="w-full md:w-[100%] text-[#e0e0e0] opacity-80">
               {project.description}
