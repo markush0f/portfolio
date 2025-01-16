@@ -14,30 +14,30 @@ const projects = [
 ---
 
 <section class="py-10" id="experience" data-aos="zoom-in-right">
-    <div class="max-w-4xl mx-auto relative">
-      <div class="flex mb-6">
-        <h2 class="text-3xl font-semibold text-center ">PROJECTS</h2>
-        <img src="/icons/code.svg" alt="" class="w-10 ml-6" />
-      </div>
+  <div class="max-w-4xl mx-auto px-10 md:px-6 relative">
+    <div class="flex mb-6">
+      <h2 class="text-3xl font-semibold text-center ml-6">PROJECTS</h2>
+      <img src="/icons/code.svg" alt="" class="w-10 ml-6" />
+    </div>
     {
       projects.map((project, index) => (
-        <div class="flex">
+        <div class="grid grid-cols-1 md:grid-cols-[3fr_1fr] lg:grid-cols-[2fr_1fr] gap-2 md:gap-8 lg:gap-12 mb-8">
           <img
             src="/projects/entity-generator.png"
             alt="entity-generator"
-            class="w-96 rounded-xl"
+            class="w-full rounded-xl mx-auto md:max-w-[95%]"
           />
-          <div class="pl-5">
+          <div class="mt-4 md:mt-0 text- text-left">
             <h1 class="font-bold text-2xl text-white">{project.name}</h1>
-            <h2 class="w-96 text-[#e0e0e0] opacity-80">
+            <h2 class="w-full md:w-[100%] text-[#e0e0e0] opacity-80">
               {project.description}
             </h2>
-            <div class="mt-4 flex">
+            <div class="mt-4 flex flex-wrap justify-start">
               {project.technologies.map((tech, index) => (
                 <img
                   src={routeTech + tech}
-                  alt={`tech-${index}`}
-                  class="w-8 h-8 ml-3"
+                  alt={tech + index}
+                  class="w-8 h-8 m-2"
                 />
               ))}
             </div>
