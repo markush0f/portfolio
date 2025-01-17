@@ -10,6 +10,15 @@ const projects = [
     url: "http://entity-generator.vercel.app",
     technologies: ["astro.svg", "react.svg", "tailwind.svg"],
   },
+  {
+    id: 2,
+    name: "TRAIN TRACK",
+    description:
+      "An application designed to enhance communication and tracking for football team. Our mission is to provide a comprehensive platform that facilitates information exchange among coaches, players, and parents, promoting active participation within the sports community.",
+    img: "projects/train-track.png",
+    url: "https://github.com/markush0f/TrainTrack",
+    technologies: ["vue.svg", "django.svg", "tailwind.svg", "mysql.svg"],
+  },
 ];
 ---
 
@@ -24,7 +33,7 @@ const projects = [
         <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-2 mb-8">
           <a href={project.url} target="_blank" rel="noopener noreferrer">
             <img
-              src="/projects/entity-generator.png"
+              src={project.img}
               alt="entity-generator"
               class="w-full rounded-xl mx-auto md:max-w-[90%] transition transform hover:scale-105 duration-300"
             />

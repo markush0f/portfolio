@@ -19,36 +19,39 @@
   </button>
   <div
     id="menu"
-    class="hidden fixed top-20 left-0 right-0 w-full sm:border-b-0 sm:rounded-none border-b rounded-b flex-col pb-2 bg-[#1e1e1e] items-center z-40 sm:flex sm:flex-row sm:static sm:bg-transparent sm:shadow-none sm:w-auto"
+    class=" 
+    hidden fixed top-20 left-0 right-0 w-full sm:border-b-0 sm:rounded-none border-b rounded-b flex-col pb-2 bg-[#1e1e1e] items-center z-40 sm:flex sm:flex-row sm:static sm:bg-transparent sm:shadow-none sm:w-auto"
   >
-    <button
-      id="nav-home"
+    <a
+      href="#home"
       class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
     >
       Home
-    </button>
-    <button
-      id="nav-aboutme"
+    </a>
+    <a
+      href="#aboutme"
       class="nav-item p-2 transform transition-all duration-300 hover:scale-110 hover:text-highlighted flex sm:inline-flex"
     >
       About <span class="ml-1">me</span>
-    </button>
-    <button
-      id="nav-experience"
+    </a>
+    <a
+      href="#experience"
       class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
     >
       Experience
-    </button>
-    <button
-      id="nav-projects"
+    </a>
+    <a
+      href="#projects"
       class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
     >
       Projects
-    </button>
+    </a>
     <div
       class="relative group transform transition-all duration-300 hover:scale-110"
     >
-      <img src="icons/cv.svg" alt="cv" class="w-8 sm:ml-4" />
+      <a href="/Resume.pdf" download="MARKUS-RESUME.pdf">
+        <img src="icons/cv.svg" alt="cv" class="w-8 sm:ml-4" />
+      </a>
       <div
         class="absolute top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-black text-white text-xs rounded py-1 px-2 w-auto"
       >
