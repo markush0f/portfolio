@@ -4,23 +4,36 @@ const experienceData = [
     title: "Prácticas en Seahorse",
     period: "Abril 2024 - Julio 2024 (4 meses)",
     description: [
-      "Colaboré en el desarrollo de soluciones para la empresa utilizando tecnologías como Angular y NestJS",
-      "Usando base de datos relacionales y no relacionales, enfocandose mas en MySQL",
-      "Dando importancia a tests unitarios y de integracion",
-      "Realicé creaciones de proyectos desde 0, implementando arquitecturas propias de la empresa.",
-      "Trabajé de cerca con el equipo para optimizar procesos y mejorar la eficiencia del código.",
-      "Ademas trabaje con metodologias como BDD y TDD.",
+      "Desarrollé soluciones utilizando Angular para el frontend y NestJS para el backend.",
+      "Gestioné bases de datos relacionales y no relacionales, enfocándome en MySQL.",
+      "Implementé pruebas unitarias e integración para garantizar la calidad del software.",
+      "Ayude al diseño de nuevas arquitecturas para nuevos proyectos.",
+      "Usé metodologías BDD y TDD para un desarrollo ágil y efectivo.",
     ],
   },
   {
     title: "Desarrollador Full Stack en Eviden",
     period: "Septiembre 2024 - Actualidad",
     description: [
-      "Trabajo como desarrollador full stack, utilizando Angular para el frontend y Spring Boot para el backend.",
-      "Participo en el desarrollo de aplicaciones web complejas, desde el diseño hasta la implementación de funcionalidades.",
-      "Trabajo en la integración de la base de datos con MySQL y en la creación de APIs RESTful para aplicaciones escalables.",
+      "Desarrollé aplicaciones web utilizando Spring Boot.",
+      "Gestioné bases de datos MySQL con alto nivel de optimización y rendimiento.",
+      "Implementé pruebas unitarias para asegurar la calidad del código y prevenir errores.",
+      "Trabajé bajo metodologías ágiles, colaborando estrechamente con el equipo para cumplir los objetivos.",
+      "Utilicé Docker para la creación de contenedores y despliegue eficiente de aplicaciones.",
+      "Administré entornos Linux para la configuración y gestión de servidores.",
     ],
   },
+];
+const wordsHighlights = [
+  "Angular",
+  "NestJS",
+  "MySQL",
+  "BDD",
+  "TDD",
+  "Spring",
+  "Boot",
+  "Docker",
+  "Linux",
 ];
 ---
 
@@ -36,14 +49,29 @@ const experienceData = [
         experienceData.map((exp, index) => (
           <div class="relative">
             <div class="absolute -left-[1.65rem] top-2 w-4 h-4 bg-highlighted rounded-full" />
-            <div class="px-6  rounded-lg">
+            <div class="px-6 rounded-lg">
               <h3 class="text-xl font-semibold text-highlighted">
                 {exp.title}
               </h3>
               <p class="text-gray-400">{exp.period}</p>
               <ul class="list-disc pl-5 mt-2 text-gray-300">
                 {exp.description.map((item) => (
-                  <li>{item}</li>
+                  <li class="">
+                    {item.split(/\s+/).map((word) => {
+                      const cleanWord = word.replace(/[.,:;!?(){}[\]]/g, "");
+                      return (
+                        <span
+                          class={`${
+                            wordsHighlights.includes(cleanWord)
+                              ? "text-blue-500 font-bold"
+                              : ""
+                          }`}
+                        >
+                          {word}{" "}
+                        </span>
+                      );
+                    })}
+                  </li>
                 ))}
               </ul>
             </div>

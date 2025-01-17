@@ -10,9 +10,9 @@ import AboutMe from "../components/aboutMe.astro";
 ---
 
 <Layout>
-  <Navbar onClick={(e: any) => e.stopPropagation()} />
-  <Home />
-  <AboutMe/>
+  <Navbar />
+  <Home id="home" />
+  <AboutMe id="aboutme" />
   <div
     class="absolute bottom-1 lg:bottom-14 w-full flex justify-center animate-bounce"
   >
@@ -23,15 +23,13 @@ import AboutMe from "../components/aboutMe.astro";
   <div id="experience">
     <Experience />
   </div>
-
-  <Projects />
-
+  <Projects id="projects" />
   <Technologies />
 
   <script>
     document.getElementById("scroll-button").addEventListener("click", () => {
       const target = document.getElementById("experience");
-      const offset = 100;
+      const offset = 200;
       const targetPosition = target
         ? target.getBoundingClientRect().top + window.scrollY - offset
         : 0;
@@ -50,26 +48,4 @@ import AboutMe from "../components/aboutMe.astro";
   animate(".name", { opacity: [0, 1], x: [-100, 0] }, { delay: stagger(0.1) });
   animate(".title", { opacity: [0, 1], y: [50, 0] }, { delay: 0.5 });
   animate(".profile", { opacity: [0, 1], scale: [0.8, 1] }, { delay: 0.5 });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const experience = document.querySelector("#experience");
-    const button = document.querySelector("#scroll-button") as HTMLElement;
-
-    // const observer = new IntersectionObserver(
-    //   (entries) => {
-    //     entries.forEach((entry) => {
-    //       if (entry.isIntersecting && button) {
-    //         button.style.display = "none";
-    //       } else {
-    //         button.style.display = "flex";
-    //       }
-    //     });
-    //   },
-    //   { threshold: 0.1 }
-    // );
-
-    // if (experience) {
-    //   observer.observe(experience);
-    // }
-  });
 </script>

@@ -1,11 +1,59 @@
-<section class="py-10 ml-20" id="experience" data-aos="zoom-in-right">
+---
+const wordsHighlights = [
+  "Angular",
+  "NestJS",
+  "MySQL",
+  "BDD",
+  "TDD",
+  "Spring",
+  "Boot",
+  "Docker",
+  "Linux",
+  "Python",
+  "Java",
+  "TypeScript",
+];
+
+const aboutTextSpanish = `
+ Soy un desarrollador web graduado en un programa de Desarrollo de Aplicaciones Web, 
+ con experiencia trabajando con Spring Boot, Angular y NestJS, además de contar con
+  conocimientos avanzados en Python, Java y TypeScript.
+  He utilizado MySQL como base de datos principal en diversos proyectos,
+  y tengo experiencia trabajando con herramientas como Docker y Linux. 
+  Aunque mi experiencia profesional es limitada, mi pasión por aprender y mejorar 
+  constantemente me impulsa a buscar soluciones innovadoras y a mantenerme actualizado 
+  con las últimas tendencias en desarrollo web.
+
+`;
+const aboutText = `
+I am a web developer graduated from a Web Application Development program,
+with experience working with Spring Boot, Angular, and NestJS, 
+as well as advanced knowledge of Python, Java, and TypeScript. 
+I have used MySQL as the main database in various projects and have 
+experience working with tools such as Docker and Linux. Although my professional 
+experience is limited, my passion for learning and continuous improvement drives 
+me to seek innovative solutions and stay updated with the latest trends in web development.
+`;
+
+function highlightText(text: string, highlights: string[]) {
+  return text
+    .split(/\s+/)
+    .map((word) => {
+      const cleanWord = word.replace(/[.,:;!?(){}[\]]/g, "");
+      return highlights.includes(cleanWord)
+        ? `<span class="text-blue-500 font-bold">${word}</span>`
+        : word;
+    })
+    .join(" ");
+}
+---
+
+<section class="py-10 ml-10" id="experience" data-aos="zoom-in-right">
   <div class="max-w-4xl mx-auto relative">
-  <h2 class="text-3xl font-semibold mb-5">ABOUT ME</h2>
-  Soy un programador web graduado en un ciclo de desarrollo de aplicaciones web,
-  con experiencia trabajando con Spring Boot, Angular y NestJS. En mis proyectos
-  personales, he trabajado con Astro, React y Python, lo que me permite seguir ampliando
-  mis conocimientos y enfrentar nuevos desafíos. Aunque tengo poca experiencia profesional,
-  mi pasión por aprender y mejorar constantemente me impulsa a buscar soluciones
-  innovadoras y mantenerme actualizado con las últimas tendencias en desarrollo web.
+    <h2 class="text-3xl font-semibold mb-5-">ABOUT ME</h2>
+    <p
+      class="text-gray-300"
+      set:html={highlightText(aboutText, wordsHighlights)}
+    />
   </div>
 </section>

@@ -22,24 +22,28 @@
     class="hidden fixed top-20 left-0 right-0 w-full sm:border-b-0 sm:rounded-none border-b rounded-b flex-col pb-2 bg-[#1e1e1e] items-center z-40 sm:flex sm:flex-row sm:static sm:bg-transparent sm:shadow-none sm:w-auto"
   >
     <button
-      class="transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
+      id="nav-home"
+      class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
     >
       Home
     </button>
     <button
-      class="transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
+      id="nav-aboutme"
+      class="nav-item p-2 transform transition-all duration-300 hover:scale-110 hover:text-highlighted flex sm:inline-flex"
+    >
+      About <span class="ml-1">me</span>
+    </button>
+    <button
+      id="nav-experience"
+      class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
     >
       Experience
     </button>
     <button
-      class="transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
+      id="nav-projects"
+      class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
     >
       Projects
-    </button>
-    <button
-      class="p-2 transform transition-all duration-300 hover:scale-110 hover:text-highlighted flex sm:inline-flex"
-    >
-      About <span class="ml-1">me</span>
     </button>
     <div
       class="relative group transform transition-all duration-300 hover:scale-110"
@@ -60,23 +64,50 @@
     const scrollContent = document.getElementById("scroll-content");
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
+    const links = {
+      home: document.getElementById("nav-home"),
+      experience: document.getElementById("nav-experience"),
+      projects: document.getElementById("nav-projects"),
+      aboutme: document.getElementById("nav-aboutme"),
+    };
 
-    // Detect scroll event and screen size
-    window.addEventListener("scroll", function () {
+    function activateLink(link) {
+      Object.keys(links).forEach((key) =>
+        links[key].classList.remove("text-highlighted")
+      );
+      link.classList.add("text-highlighted");
+    }
+
+    function handleScroll() {
       if (window.scrollY > 400 || window.innerWidth < 680) {
-        navbar!.classList.add("bg-[#1e1e1e]");
-        scrollContent!.classList.add("opacity-100", "translate-y-0");
-        scrollContent!.classList.remove("opacity-0", "-translate-y-4");
+        navbar.classList.add("bg-[#1e1e1e]");
+        scrollContent.classList.add("opacity-100", "translate-y-0");
+        scrollContent.classList.remove("opacity-0", "-translate-y-4");
       } else {
-        navbar!.classList.remove("bg-[#1e1e1e]");
-        scrollContent!.classList.add("opacity-0", "-translate-y-4");
-        scrollContent!.classList.remove("opacity-100", "translate-y-0");
+        navbar.classList.remove("bg-[#1e1e1e]");
+        scrollContent.classList.add("opacity-0", "-translate-y-4");
+        scrollContent.classList.remove("opacity-100", "translate-y-0");
       }
-    });
 
-    menuToggle!.addEventListener("click", function () {
-      menu!.classList.toggle("hidden");
-      menu!.classList.toggle("flex");
+      // Determine which section is currently in view
+      const sections = ["home", "experience", "projects", "aboutme"];
+      let currentSection = "home";
+
+      sections.forEach((section) => {
+        const el = document.getElementById(section);
+        if (el && window.scrollY >= el.offsetTop - 200) {
+          currentSection = section;
+        }
+      });
+
+      activateLink(links[currentSection]);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    menuToggle.addEventListener("click", function () {
+      menu.classList.toggle("hidden");
+      menu.classList.toggle("flex");
     });
   });
 </script>
