@@ -1,4 +1,6 @@
 ---
+import Education from "./education.astro";
+
 const wordsHighlights = [
   "Angular",
   "NestJS",
@@ -47,13 +49,15 @@ function highlightText(text: string, highlights: string[]) {
     .join(" ");
 }
 ---
-
-<section class="py-10 ml-10" id="experience" data-aos="zoom-in-right">
+<div>
+<section class="py-10 md:ml-10 ml-5 mr-5" id="experience">
   <div class="max-w-4xl mx-auto relative">
-    <h2 class="text-3xl font-semibold mb-5-">ABOUT ME</h2>
+    <h1 class="text-3xl font-semibold mb-5-">ABOUT ME</h1>
     <p
       class="text-gray-300"
       set:html={highlightText(aboutText, wordsHighlights)}
     />
   </div>
 </section>
+<!-- <Education/> -->
+</div>

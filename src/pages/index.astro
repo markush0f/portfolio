@@ -7,14 +7,20 @@ import "aos/dist/aos.css";
 import Technologies from "../components/technologies.astro";
 import Projects from "../components/projects.astro";
 import AboutMe from "../components/aboutMe.astro";
+import Education from "../components/education.astro"
 ---
 
 <Layout>
   <Navbar />
   <main>
     <section id="home"><Home /></section>
-    <section id="aboutme"><AboutMe /></section>
-    <section id="experience"><Experience /></section>
+    <section id="aboutme"  data-aos="zoom-in-right">
+      <AboutMe />
+      <Education />
+    </section>
+    <section id="experience">
+      <Experience />
+    </section>
     <section id="projects"><Projects /></section>
     <section id="technologies"><Technologies /></section>
     <div
@@ -27,7 +33,7 @@ import AboutMe from "../components/aboutMe.astro";
     <script>
       document.getElementById("scroll-button").addEventListener("click", () => {
         const target = document.getElementById("experience");
-        const offset = 200;
+        const offset = 100;
         const targetPosition = target
           ? target.getBoundingClientRect().top + window.scrollY - offset
           : 0;
@@ -48,15 +54,4 @@ import AboutMe from "../components/aboutMe.astro";
   animate(".title", { opacity: [0, 1], y: [50, 0] }, { delay: 0.5 });
   animate(".profile", { opacity: [0, 1], scale: [0.8, 1] }, { delay: 0.5 });
 
-  document.getElementById("scroll-button").addEventListener("click", () => {
-    const target = document.getElementById("experience");
-    const offset = 200;
-    const targetPosition = target
-      ? target.getBoundingClientRect().top + window.scrollY - offset
-      : 0;
-
-    if (targetPosition !== undefined) {
-      window.scrollTo({ top: targetPosition, behavior: "smooth" });
-    }
-  });
 </script>
