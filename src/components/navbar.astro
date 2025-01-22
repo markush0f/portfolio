@@ -80,6 +80,13 @@
       } else {
         console.error(`Element with ID '${targetId}' not found!`);
       }
+
+      // Ocultar el menú después de hacer clic en un enlace (solo en pantallas pequeñas)
+      const menu = document.getElementById("menu");
+      if (window.innerWidth < 680) {
+        menu.classList.add("hidden");
+        menu.classList.remove("flex");
+      }
     });
   });
 
@@ -88,7 +95,6 @@
     const scrollContent = document.getElementById("scroll-content");
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
-
 
     function handleScroll() {
       if (window.scrollY > 400 || window.innerWidth < 680) {
@@ -101,15 +107,30 @@
         scrollContent.classList.remove("opacity-100", "translate-y-0");
       }
 
-
-      activateLink(links[currentSection]);
+      // Aquí debes añadir la lógica de activar el enlace correspondiente,
+      // por ejemplo, si usas una función `activateLink` para gestionar la clase activa:
+      // activateLink(links[currentSection]);
     }
 
     window.addEventListener("scroll", handleScroll);
 
     menuToggle.addEventListener("click", function () {
-      menu.classList.toggle("hidden");
-      menu.classList.toggle("flex");
+      if (window.innerWidth < 680) {
+        // Solo funciona en pantallas pequeñas
+        menu.classList.toggle("hidden");
+        menu.classList.toggle("flex");
+      }
+    });
+
+    // Si la ventana cambia de tamaño (recalculamos el tamaño del menú desplegable)
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 680) {
+        menu.classList.remove("hidden");
+        menu.classList.add("flex");
+      } else {
+        menu.classList.add("hidden");
+        menu.classList.remove("flex");
+      }
     });
   });
 </script>
