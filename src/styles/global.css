@@ -11,10 +11,3 @@ h1 {
     font-family: "Montserrat", sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-section {
-    scroll-margin-top: 80px;
-}
