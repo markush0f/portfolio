@@ -38,7 +38,7 @@ import Footer from "../components/footer.astro";
     <script>
       document.getElementById("scroll-button").addEventListener("click", () => {
         const target = document.getElementById("experience");
-        const offset = window.innerWidth < 680 ? 640 : 200;
+        const offset = window.innerWidth < 680 ? 600 : 400;
         const targetPosition = target
           ? target.getBoundingClientRect().top + window.scrollY - offset
           : 0;

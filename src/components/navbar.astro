@@ -70,7 +70,8 @@
         const navbarHeight = document.querySelector("nav").offsetHeight;
 
         // Asegurarse de que el cálculo de la posición sea correcto
-        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        const targetPosition =
+          target.getBoundingClientRect().top + window.scrollY - navbarHeight;
 
         window.scrollTo({
           top: targetPosition,
@@ -82,7 +83,7 @@
 
       // Ocultar el menú después de hacer clic en un enlace (solo en pantallas pequeñas)
       const menu = document.getElementById("menu");
-      if (window.innerWidth < 680) {
+      if (window.innerWidth < 680 && menu) {
         menu.classList.add("hidden");
         menu.classList.remove("flex");
       }
