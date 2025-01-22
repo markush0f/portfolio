@@ -59,7 +59,6 @@
     </div>
   </div>
 </nav>
-
 <script>
   document.querySelectorAll("nav a").forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -70,8 +69,8 @@
       if (target) {
         const navbarHeight = document.querySelector("nav").offsetHeight;
 
-        const targetPosition =
-          target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        // Asegurarse de que el cálculo de la posición sea correcto
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
 
         window.scrollTo({
           top: targetPosition,
@@ -106,10 +105,6 @@
         scrollContent.classList.add("opacity-0", "-translate-y-4");
         scrollContent.classList.remove("opacity-100", "translate-y-0");
       }
-
-      // Aquí debes añadir la lógica de activar el enlace correspondiente,
-      // por ejemplo, si usas una función `activateLink` para gestionar la clase activa:
-      // activateLink(links[currentSection]);
     }
 
     window.addEventListener("scroll", handleScroll);
@@ -122,7 +117,6 @@
       }
     });
 
-    // Si la ventana cambia de tamaño (recalculamos el tamaño del menú desplegable)
     window.addEventListener("resize", function () {
       if (window.innerWidth >= 680) {
         menu.classList.remove("hidden");
