@@ -68,10 +68,13 @@
 
       if (target) {
         const navbarHeight = document.querySelector("nav").offsetHeight;
+        const offset = 20;
 
-        // Asegurarse de que el cálculo de la posición sea correcto
         const targetPosition =
-          target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          navbarHeight -
+          offset;
 
         window.scrollTo({
           top: targetPosition,
@@ -81,7 +84,6 @@
         console.error(`Element with ID '${targetId}' not found!`);
       }
 
-      // Ocultar el menú después de hacer clic en un enlace (solo en pantallas pequeñas)
       const menu = document.getElementById("menu");
       if (window.innerWidth < 680 && menu) {
         menu.classList.add("hidden");
