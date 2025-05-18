@@ -1,12 +1,21 @@
 ---
+interface Project {
+  id: number;
+  name: string;
+  description: string;
+  img: string;
+  url: string;
+  technologies: string[];
+}
+
 const routeTech = "icons/technologies/";
-const projects = [
+const projects: Project[] = [
   {
     id: 1,
     name: "ENTITY GENERATOR",
     description:
       "Web application created to generate entities for Spring projects. It allows defining attributes and relationships, validates data in real-time, and offers the download of the generated Java code.",
-  img: "projects/entity-generator.png",
+    img: "projects/entity-generator.png",
     url: "http://entity-generator.vercel.app",
     technologies: ["astro.svg", "react.svg", "tailwind.svg"],
   },
@@ -19,10 +28,25 @@ const projects = [
     url: "https://github.com/markush0f/TrainTrack",
     technologies: ["vue.svg", "django.svg", "tailwind.svg", "mysql.svg"],
   },
+  {
+    id: 3,
+    name: "NEXT CALL DEV",
+    description:
+      "The NextCallDev backend consists of microservices developed in Spring Boot and Node.js that work together to provide real-time web video calls for the development world.",
+    img: "projects/next-call-dev.png",
+    url: "https://github.com/markush0f/NextCallDevBackend",
+    technologies: [
+      "spring.svg",
+      "nodejs.svg",
+      "docker.svg",
+      "postgresql.svg",
+      "mysql.svg",
+    ],
+  },
 ];
 ---
 
-<section class="py-20" id="experience" >
+<section class="py-20" id="experience">
   <div class="max-w-4xl mx-auto px-10 md:px-6 relative">
     <div class="flex mb-6">
       <h1 class="text-3xl font-semibold ml-6">PROJECTS</h1>
@@ -34,20 +58,21 @@ const projects = [
           <a href={project.url} target="_blank" rel="noopener noreferrer">
             <img
               src={project.img}
-              alt="entity-generator"
-              class="w-full rounded-xl mx-auto md:max-w-[90%] transition transform hover:scale-105 duration-300"
+              alt={project.name}
+              class="w-full md:max-w-full h-52 md:h-56 object-cover rounded-xl mx-auto transition transform hover:scale-105 duration-300"
             />
           </a>
-          <div class="mt-4 md:mt-0 text-left">
+          <div class="mt-4 md:mt-0 text-left ml-4">
             <h1 class="font-bold text-2xl text-white">{project.name}</h1>
-            <h2 class="w-full  text-[#e0e0e0] opacity-80">
+            <h2 class="w-full text-[#e0e0e0] opacity-80">
               {project.description}
             </h2>
             <div class="mt-4 flex flex-wrap justify-start">
-              {project.technologies.map((tech, index) => (
+              {project.technologies.map((tech, idx) => (
                 <img
+                  key={idx}
                   src={routeTech + tech}
-                  alt={tech + index}
+                  alt={tech}
                   class="w-8 h-8 m-2"
                 />
               ))}
