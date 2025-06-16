@@ -1,0 +1,46 @@
+---
+interface Certificate {
+  name: string;
+  description: string;
+  image: string;
+}
+
+const certificates: Certificate[] = [
+  {
+    name: "Microservice Spring Boot and Spring Cloud",
+    description:
+      "Certified in Microservice Architecture using Spring Boot and Spring Cloud.",
+    image: "/spring-microservice-certificate.jpg",
+  },
+  {
+    name: "React and Next.js",
+    description: "Certified React and NextJS.",
+    image: "/react-certificate.jpg",
+  },
+];
+---
+
+<div class="max-w-6xl mx-auto relative mb-20">
+  <h1 class="text-3xl font-semibold text-left ml-28 mb-6">Certificates</h1>
+  <img src="/icons/certificate.svg" alt="" />
+  <div class="flex gap-6 justify-center flex-wrap">
+    {
+      certificates.map((certificate) => (
+        <div class="shadow-lg rounded-lg p-4 flex flex-col w-[50%] sm:w-[20%] md:w-[40%]">
+          <div class="overflow-hidden">
+            <img
+              src={certificate.image}
+              alt={certificate.name}
+              id={certificate.name}
+              class="w-full h-48 object-cover rounded-t-lg transform transition-all duration-200 hover:scale-110 cursor-pointer"
+            />
+          </div>
+          <h3 class="text-xl font-semibold mt-4 text-highlighted">
+            {certificate.name}
+          </h3>
+          <p class="text-blue mt-2">{certificate.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>
