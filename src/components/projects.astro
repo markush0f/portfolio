@@ -1,4 +1,6 @@
 ---
+import ProjectCarousel from "./ProjectCarousel.astro";
+
 interface Project {
   id: number;
   name: string;
@@ -21,15 +23,6 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    name: "TRAIN TRACK",
-    description:
-      "An application designed to enhance communication and tracking for football team. Our mission is to provide a comprehensive platform that facilitates information exchange among coaches, players, and parents, promoting active participation within the sports community.",
-    img: "projects/train-track.png",
-    url: "https://github.com/markush0f/TrainTrack",
-    technologies: ["vue.svg", "django.svg", "tailwind.svg", "mysql.svg"],
-  },
-  {
-    id: 3,
     name: "NEXT CALL DEV",
     description:
       "The NextCallDev backend consists of microservices developed in Spring Boot and Node.js that work together to provide real-time web video calls for the development world.",
@@ -42,6 +35,15 @@ const projects: Project[] = [
       "postgresql.svg",
       "mysql.svg",
     ],
+  },
+  {
+    id: 3,
+    name: "ChatBOT",
+    description:
+      "Chatbot RAG is an intelligent assistant developed with FastAPI, PostgreSQL, and Next.js, capable of answering questions based on documents selected by the user.It integrates a RAG system. The system allows you to manage and upload documents, automatically generate their vector representations, and maintain chats linked to them.",
+    img: "projects/chatbot.png",
+    url: "https://github.com/markush0f/rag-chatbot",
+    technologies: ["fastapi.svg", "postgresql.svg", "docker.svg"],
   },
   {
     id: 4,
@@ -61,7 +63,7 @@ const projects: Project[] = [
 ];
 ---
 
-<section class="py-20" id="experience">
+<section class="" id="experience">
   <div class="max-w-4xl mx-auto px-10 md:px-6 relative">
     <div class="flex mb-6">
       <h1 class="text-3xl font-semibold ml-6">PROJECTS</h1>
@@ -85,7 +87,7 @@ const projects: Project[] = [
             <div class="mt-4 flex flex-wrap justify-start">
               {project.technologies.map((tech, idx) => (
                 <img
-                  key={idx}
+                  key={index + "-" + idx}
                   src={routeTech + tech}
                   alt={tech}
                   class="w-8 h-8 m-2"
@@ -96,5 +98,6 @@ const projects: Project[] = [
         </div>
       ))
     }
+    <ProjectCarousel />
   </div>
 </section>
