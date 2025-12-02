@@ -46,50 +46,87 @@ const wordsHighlights = [
   "Boot",
   "Docker",
   "Linux",
+  "Angular",
+  "Python",
+  "Java",
 ];
 ---
 
-<section class="py-20">
-  <div class="max-w-4xl mx-auto relative">
-    <div class="flex mb-6">
-      <h1 class="text-3xl font-semibold text-center ml-10">EXPERIENCE</h1>
-      <img src="/icons/work.svg" alt="" class="w-9 ml-6" />
+<section class="px-5 md:px-10 lg:px-20 py-20">
+  <div class="max-w-5xl mx-auto">
+    <!-- Title -->
+    <div class="mb-12 space-y-2">
+      <div class="flex items-center gap-4">
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+          Experience
+        </h2>
+        <img src="/icons/work.svg" alt="" class="w-10 h-10 opacity-80" />
+      </div>
+      <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
     </div>
-    <div class="absolute left-5 top-0 bottom-0 w-[1.8px] bg-gray-500"></div>
-    <div class="space-y-8 pl-10">
-      {
-        experienceData.map((exp, index) => (
-          <div class="relative">
-            <div class="absolute -left-[1.65rem] top-2 w-4 h-4 bg-highlighted rounded-full" />
-            <div class="px-6 rounded-lg">
-              <h3 class="text-xl font-semibold text-highlighted">
-                {exp.title}
-              </h3>
-              <p class="text-gray-400">{exp.period}</p>
-              <ul class="list-disc pl-5 mt-2 text-gray-300">
-                {exp.description.map((item) => (
-                  <li class="">
-                    {item.split(/\s+/).map((word) => {
-                      const cleanWord = word.replace(/[.,:;!?(){}[\]]/g, "");
-                      return (
-                        <span
-                          class={`${
-                            wordsHighlights.includes(cleanWord)
-                              ? "text-blue-500 font-bold"
-                              : ""
-                          }`}
-                        >
-                          {word}{" "}
+
+    <!-- Timeline -->
+    <div class="relative pl-8 md:pl-12">
+      <!-- Vertical line -->
+      <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500 via-blue-600 to-transparent"></div>
+
+      <div class="space-y-12">
+        {
+          experienceData.map((exp, index) => (
+            <div class="relative group">
+              <!-- Timeline dot -->
+              <div class="absolute -left-[1.65rem] top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900 group-hover:scale-125 group-hover:bg-blue-400 transition-all duration-300 shadow-lg shadow-blue-500/50">
+                <div class="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-75 group-hover:opacity-0"></div>
+              </div>
+
+              <!-- Content card -->
+              <div class="relative">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-0 group-hover:opacity-20 blur transition duration-300"></div>
+                
+                <div class="relative bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 md:p-8 hover:border-gray-700 transition-all duration-300">
+                  <!-- Header -->
+                  <div class="mb-4 space-y-2">
+                    <h3 class="text-xl md:text-2xl font-semibold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                      {exp.title}
+                    </h3>
+                    <div class="flex items-center gap-2 text-gray-400">
+                      <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span class="text-sm md:text-base">{exp.period}</span>
+                    </div>
+                  </div>
+
+                  <!-- Description -->
+                  <ul class="space-y-3">
+                    {exp.description.map((item) => (
+                      <li class="flex gap-3 text-gray-300 leading-relaxed">
+                        <span class="text-blue-500 mt-1.5 flex-shrink-0">▹</span>
+                        <span class="flex-1">
+                          {item.split(/\s+/).map((word) => {
+                            const cleanWord = word.replace(/[.,:;!?(){}[\]]/g, "");
+                            return (
+                              <span
+                                class={`${
+                                  wordsHighlights.includes(cleanWord)
+                                    ? "text-blue-400 font-semibold hover:text-blue-300 transition-colors duration-200"
+                                    : ""
+                                }`}
+                              >
+                                {word}{" "}
+                              </span>
+                            );
+                          })}
                         </span>
-                      );
-                    })}
-                  </li>
-                ))}
-              </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

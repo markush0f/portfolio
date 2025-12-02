@@ -16,54 +16,90 @@ const certificates = [
 ];
 ---
 
-<div class="max-w-6xl mx-auto relative mb-20">
-  <h1 class="text-3xl font-semibold text-left sm:ml-28 mb-6 ml-10">
-    Certificates
-  </h1>
-  <img src="/icons/certificate.svg" alt="" />
-  <div class="flex gap-6 justify-center flex-wrap">
-    {
-      certificates.map((certificate) => (
-        <div
-          key={certificate.name}
-          class="shadow-lg rounded-lg p-4 flex flex-col w-[80%] sm:w-[20%] md:w-[40%] relative"
-        >
-          <div class="overflow-hidden">
-            <img
-              src={certificate.image}
-              alt={certificate.name}
-              id={certificate.name}
-              class="w-full h-32 sm:h-48 object-cover rounded-t-lg transform transition-all duration-200 hover:scale-110 cursor-pointer"
-            />
+<section class="px-5 md:px-10 lg:px-20 py-20" id="certificates">
+  <div class="max-w-6xl mx-auto">
+    <!-- Title -->
+    <div class="mb-16 space-y-2">
+      <div class="flex items-center gap-4">
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+          Certificates
+        </h2>
+        <img src="/icons/certificate.svg" alt="" class="w-10 h-10 opacity-80" />
+      </div>
+      <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+    </div>
+
+    <!-- Certificates Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        certificates.map((certificate) => (
+          <div class="group relative">
+            <!-- Glow effect -->
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500"></div>
+            
+            <div class="relative bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden hover:border-gray-700 transition-all duration-300">
+              <!-- Image Container -->
+              <div class="relative overflow-hidden aspect-video">
+                <img
+                  src={certificate.image}
+                  alt={certificate.name}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                
+                <!-- Overlay gradient -->
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
+
+                <!-- Download button -->
+                <a
+                  href={certificate.downloadLink}
+                  download
+                  class="absolute top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-110 z-10"
+                  aria-label={`Download ${certificate.name} certificate`}
+                  onclick="event.stopPropagation()"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 5v14M19 12l-7 7-7-7"
+                    />
+                  </svg>
+                </a>
+
+                <!-- View badge -->
+                <div class="absolute bottom-4 left-4 bg-blue-500/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  Click to view
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="p-6 space-y-3">
+                <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+                  {certificate.name}
+                </h3>
+                <p class="text-gray-400 leading-relaxed">
+                  {certificate.description}
+                </p>
+
+                <!-- Verification badge -->
+                <div class="flex items-center gap-2 pt-2">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-sm text-gray-500">Verified Certificate</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="sm:text-xl text-sm font-semibold mt-4 text-highlighted">
-            {certificate.name}
-          </h3>
-          <p class="text-xs sm:text-base text-blue mt-2">
-            {certificate.description}
-          </p>
-          <a
-            href={certificate.downloadLink}
-            download
-            class="absolute top-4 right-4 text-blue-500 hover:text-blue-700"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-10 h-10"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 5v14M19 12l-7 7-7-7"
-              />
-            </svg>
-          </a>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
-</div>
+</section>

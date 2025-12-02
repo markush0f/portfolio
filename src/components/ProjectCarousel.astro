@@ -1,5 +1,5 @@
 ---
-// MiniProjectsCarousel.astro
+// ProjectCarousel.astro
 const projects = [
   {
     id: 1,
@@ -25,96 +25,120 @@ const projects = [
 ];
 ---
 
-<div class="w-full max-w-xs md:max-w-sm lg:max-w-md mx-auto">
-  <div class="relative">
-    <h2 class="text-base md:text-lg font-semibold pb-2">More projects...</h2>
-    <div
-      class="carousel-container relative h-40 sm:h-44 md:h-48 lg:h-52 rounded-3xl overflow-hidden cursor-pointer group"
-      id="carouselContainer"
-    >
-      {
-        projects.map((project, index) => (
-          <div
-            class={`carousel-slide absolute inset-0 transition-all duration-300 rounded-3xl ${index === 0 ? "opacity-100" : "opacity-0"}`}
-            data-index={index}
-            data-url={project.url}
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-3xl"
-            />
-
-            <div class="rounded-3xl absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none transition-all duration-300 group-hover:from-black/80" />
-
-            <div class="absolute bottom-0 left-0 right-0 p-2.5 md:p-3 lg:p-4 text-white pointer-events-none transition-transform duration-300 group-hover:translate-y-0 translate-y-1">
-              <h3 class="text-xs md:text-sm lg:text-base font-medium">
-                {project.title}
-              </h3>
-              <p class="text-[10px] md:text-xs text-white/80 mt-0.5">
-                {project.tech}
-              </p>
-            </div>
-          </div>
-        ))
-      }
-
-      <div
-        class="absolute inset-0 border-2 border-white/0 group-hover:border-white/20 rounded transition-all duration-300 pointer-events-none rounded-3xl"
-      >
-      </div>
+<div class="w-full">
+  <div class="relative max-w-2xl mx-auto">
+    <!-- Title -->
+    <div class="mb-6">
+      <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">
+        More Projects
+      </h3>
+      <div class="w-16 h-0.5 bg-blue-500 rounded-full"></div>
     </div>
 
-    <button
-      id="prevBtn"
-      class="absolute left-1 md:left-1.5 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-all duration-300 bg-black/30 hover:bg-black/60 hover:scale-110 rounded-full p-0.5 md:p-1 z-10"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="w-3.5 h-3.5 md:w-4 md:h-4"
+    <!-- Carousel Container -->
+    <div class="relative group">
+      <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500"></div>
+      
+      <div
+        class="carousel-container relative h-64 md:h-80 lg:h-96 rounded-2xl overflow-hidden cursor-pointer border border-gray-800 group-hover:border-gray-700 transition-all duration-300"
+        id="carouselContainer"
       >
-        <path d="m15 18-6-6 6-6"></path>
-      </svg>
-    </button>
+        {
+          projects.map((project, index) => (
+            <div
+              class={`carousel-slide absolute inset-0 transition-all duration-500 rounded-2xl ${index === 0 ? "opacity-100" : "opacity-0"}`}
+              data-index={index}
+              data-url={project.url}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
 
-    <button
-      id="nextBtn"
-      class="absolute right-1 md:right-1.5 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-all duration-300 bg-black/30 hover:bg-black/60 hover:scale-110 rounded-full p-0.5 md:p-1 z-10"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="w-3.5 h-3.5 md:w-4 md:h-4"
-      >
-        <path d="m9 18 6-6-6-6"></path>
-      </svg>
-    </button>
-  </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-all duration-300 group-hover:from-black/90" />
 
-  <div class="flex justify-center gap-1 mt-2" id="indicators">
-    {
-      projects.map((_, index) => (
+              <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white pointer-events-none">
+                <div class="transform transition-all duration-300 group-hover:translate-y-0 translate-y-2">
+                  <h4 class="text-xl md:text-2xl font-bold mb-2">
+                    {project.title}
+                  </h4>
+                  <p class="text-sm md:text-base text-blue-300 font-medium">
+                    {project.tech}
+                  </p>
+                </div>
+              </div>
+
+              <!-- View Project overlay -->
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <div class="bg-blue-500 text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <span>View Project</span>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+
+        <!-- Navigation Buttons -->
         <button
-          class={`indicator h-0.5 md:h-1 rounded-full transition-all duration-300 hover:scale-150 ${index === 0 ? "w-3 md:w-4 bg-gray-800" : "w-0.5 md:w-1 bg-gray-300 hover:bg-gray-500"}`}
-          data-index={index}
-        />
-      ))
-    }
+          id="prevBtn"
+          class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-all duration-300 bg-black/40 hover:bg-black/70 hover:scale-110 rounded-full p-3 z-10 backdrop-blur-sm"
+          aria-label="Previous project"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+          >
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+
+        <button
+          id="nextBtn"
+          class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-all duration-300 bg-black/40 hover:bg-black/70 hover:scale-110 rounded-full p-3 z-10 backdrop-blur-sm"
+          aria-label="Next project"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+          >
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Indicators -->
+      <div class="flex justify-center gap-2 mt-6" id="indicators">
+        {
+          projects.map((_, index) => (
+            <button
+              class={`indicator h-1.5 rounded-full transition-all duration-300 hover:scale-125 ${index === 0 ? "w-8 bg-blue-500" : "w-1.5 bg-gray-600 hover:bg-gray-500"}`}
+              data-index={index}
+              aria-label={`Go to project ${index + 1}`}
+            />
+          ))
+        }
+      </div>
+    </div>
   </div>
 </div>
 
@@ -133,18 +157,17 @@ const projects = [
 
     indicators.forEach((indicator, index) => {
       if (index === currentIndex) {
-        indicator.classList.remove("w-0.5", "md:w-1", "bg-gray-300");
-        indicator.classList.add("w-3", "md:w-4", "bg-gray-800");
+        indicator.classList.remove("w-1.5", "bg-gray-600");
+        indicator.classList.add("w-8", "bg-blue-500");
       } else {
-        indicator.classList.remove("w-3", "md:w-4", "bg-gray-800");
-        indicator.classList.add("w-0.5", "md:w-1", "bg-gray-300");
+        indicator.classList.remove("w-8", "bg-blue-500");
+        indicator.classList.add("w-1.5", "bg-gray-600");
       }
     });
   }
 
   // Click en el contenedor para redirigir
   container?.addEventListener("click", (e) => {
-    // Evitar clicks en los botones
     const target = e.target as HTMLElement;
     if (target.closest("#prevBtn") || target.closest("#nextBtn")) {
       return;
@@ -175,4 +198,22 @@ const projects = [
       updateCarousel();
     });
   });
+
+  // Auto-play (opcional, descomenta si quieres)
+  // let autoplayInterval = setInterval(() => {
+  //   currentIndex = (currentIndex + 1) % totalSlides;
+  //   updateCarousel();
+  // }, 5000);
+
+  // Pausar autoplay al hover
+  // container?.addEventListener("mouseenter", () => {
+  //   clearInterval(autoplayInterval);
+  // });
+
+  // container?.addEventListener("mouseleave", () => {
+  //   autoplayInterval = setInterval(() => {
+  //     currentIndex = (currentIndex + 1) % totalSlides;
+  //     updateCarousel();
+  //   }, 5000);
+  // });
 </script>

@@ -25,8 +25,8 @@ const aboutTextSpanish = `
   Aunque mi experiencia profesional es limitada, mi pasión por aprender y mejorar 
   constantemente me impulsa a buscar soluciones innovadoras y a mantenerme actualizado 
   con las últimas tendencias en desarrollo web.
-
 `;
+
 const aboutText = `
 I am a web developer graduated from a Web Application Development program,
 with experience working with Spring Boot, React, and NestJS, 
@@ -43,21 +43,82 @@ function highlightText(text: string, highlights: string[]) {
     .map((word) => {
       const cleanWord = word.replace(/[.,:;!?(){}[\]]/g, "");
       return highlights.includes(cleanWord)
-        ? `<span class="text-blue-500 font-bold">${word}</span>`
+        ? `<span class="text-blue-400 font-semibold hover:text-blue-300 transition-colors duration-200 inline-block">${word}</span>`
         : word;
     })
     .join(" ");
 }
 ---
 
-<div>
-  <section class="pb-6 md:ml-10 ml-5 mr-5 pt-48">
-    <div class="max-w-4xl mx-auto relative">
-      <h1 class="text-3xl font-semibold mb-5">ABOUT ME</h1>
-      <p
-        class="text-gray-300"
-        set:html={highlightText(aboutText, wordsHighlights)}
-      />
+<div class="relative">
+  <section class="px-5 md:px-10 lg:px-20 py-20 lg:py-32">
+    <div class="max-w-5xl mx-auto">
+      <!-- Decorative element -->
+      <div
+        class="absolute -left-4 top-24 w-1 h-32 bg-gradient-to-b from-blue-500 to-transparent rounded-full opacity-50"
+      >
+      </div>
+
+      <div class="space-y-8">
+        <!-- Title with subtle animation class -->
+        <div class="space-y-2">
+          <h2
+            class="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+          >
+            About Me
+          </h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"
+          >
+          </div>
+        </div>
+
+        <!-- Content card -->
+        <div class="relative group">
+          <!-- Glow effect on hover -->
+          <div
+            class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500"
+          >
+          </div>
+
+          <div
+            class="relative bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 md:p-10 hover:border-gray-700 transition-all duration-300"
+          >
+            <p
+              class="text-gray-300 text-lg md:text-xl leading-relaxed"
+              set:html={highlightText(aboutText, wordsHighlights)}
+            />
+          </div>
+        </div>
+
+        <!-- Optional: Stats or quick facts -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
+          <div
+            class="text-center p-4 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-blue-500/30 transition-colors duration-300"
+          >
+            <div class="text-2xl font-bold text-blue-400">3+</div>
+            <div class="text-sm text-gray-400 mt-1">Years Coding</div>
+          </div>
+          <div
+            class="text-center p-4 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-blue-500/30 transition-colors duration-300"
+          >
+            <div class="text-2xl font-bold text-blue-400">10+</div>
+            <div class="text-sm text-gray-400 mt-1">Projects</div>
+          </div>
+          <div
+            class="text-center p-4 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-blue-500/30 transition-colors duration-300"
+          >
+            <div class="text-2xl font-bold text-blue-400">5+</div>
+            <div class="text-sm text-gray-400 mt-1">Technologies</div>
+          </div>
+          <div
+            class="text-center p-4 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-blue-500/30 transition-colors duration-300"
+          >
+            <div class="text-2xl font-bold text-blue-400">∞</div>
+            <div class="text-sm text-gray-400 mt-1">Learning</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
