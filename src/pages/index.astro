@@ -29,9 +29,7 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
         </button>
       </div>
     </section>
-    <section id="technologies" data-aos="fade-up">
-      <Technologies />
-    </section>
+
     <section id="aboutme" data-aos="fade-up">
       <AboutMe />
       <Education />
@@ -45,6 +43,9 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
     <section id="certificates" data-aos="fade-up">
       <Certificates />
     </section>
+    <section id="technologies" data-aos="fade-up">
+      <Technologies />
+    </section>
 
     <div
       class="absolute bottom-1 lg:bottom-14 w-full flex justify-center animate-bounce"
@@ -57,7 +58,7 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
       document
         .getElementById("scroll-button")!
         .addEventListener("click", () => {
-          const next = document.getElementById("technologies");
+          const next = document.getElementById("aboutme");
 
           if (next) {
             const pos = next.getBoundingClientRect().top + window.scrollY - 80;
