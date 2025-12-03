@@ -48,9 +48,26 @@ const ChatbotBubble: React.FC = () => {
         handleDragEnd
     } = useDragPosition(() => updateQuadrant(containerRef.current));
 
-    // Resize hook
-    const width = useMotionValue(320);
-    const height = useMotionValue(384);
+    // Tamaño inicial responsive del diálogo
+    const getInitialWidth = () => {
+        if (typeof window === 'undefined') return 320;
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 640) return Math.min(280, screenWidth - 40); // móvil
+        if (screenWidth < 768) return 300; // tablet pequeña
+        return 320; // desktop
+    };
+
+    const getInitialHeight = () => {
+        if (typeof window === 'undefined') return 480;
+        const screenHeight = window.innerHeight;
+        if (screenHeight < 640) return Math.min(420, screenHeight - 120); // móvil
+        if (screenHeight < 768) return 450; // tablet pequeña
+        return 480; // desktop
+    };
+
+    // Resize hook con tamaños iniciales
+    const width = useMotionValue(getInitialWidth());
+    const height = useMotionValue(getInitialHeight());
     const widthPx = useTransform(width, (v) => `${v}px`);
     const heightPx = useTransform(height, (v) => `${v}px`);
 
@@ -60,6 +77,25 @@ const ChatbotBubble: React.FC = () => {
         height,
         () => updateQuadrant(containerRef.current)
     );
+
+    // Ajustar tamaño al cambiar el viewport
+    useEffect(() => {
+        const handleResize = () => {
+            const newWidth = getInitialWidth();
+            const newHeight = getInitialHeight();
+
+            // Solo actualizar si el tamaño actual es mayor que el nuevo máximo
+            if (width.get() > newWidth) {
+                width.set(newWidth);
+            }
+            if (height.get() > newHeight) {
+                height.set(newHeight);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [width, height]);
 
     // Auto scroll
     useEffect(() => {
@@ -152,7 +188,7 @@ const ChatbotBubble: React.FC = () => {
 
     return (
         <>
-            <div ref={constraintsRef} className="fixed z-0 pointer-events-none inset-4" />
+            <div ref={constraintsRef} className="fixed z-0 pointer-events-none inset-2 sm:inset-4" />
 
             <motion.div
                 ref={containerRef}
@@ -164,7 +200,7 @@ const ChatbotBubble: React.FC = () => {
                 dragMomentum={false}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
-                className="fixed z-50 w-16 h-16 pointer-events-auto bottom-10 right-10"
+                className="fixed z-50 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 pointer-events-auto bottom-3 right-3 sm:bottom-6 sm:right-6 md:bottom-10 md:right-10"
             >
                 <AnimatePresence>
                     {isOpen && (
@@ -178,7 +214,7 @@ const ChatbotBubble: React.FC = () => {
                                 transformOrigin: getTransformOrigin(),
                                 ...getDialogPosition()
                             }}
-                            className="absolute flex flex-col overflow-hidden border shadow-2xl bg-white/10 backdrop-blur-lg border-white/20 rounded-2xl"
+                            className="absolute flex flex-col overflow-hidden border shadow-2xl bg-white/10 backdrop-blur-lg border-white/20 rounded-xl sm:rounded-2xl"
                         >
                             <ChatHeader
                                 onDragStart={startDrag}
@@ -197,12 +233,12 @@ const ChatbotBubble: React.FC = () => {
                                 onSend={handleSendMessage}
                             />
 
-                            {/* Resize handle */}
+                            {/* Resize handle - oculto en móvil */}
                             <div
                                 onPointerDown={startResize}
-                                className={`absolute w-6 h-6 flex items-center justify-center text-white/40 hover:text-white/80 transition-colors ${getHandlePos()}`}
+                                className={`absolute w-5 h-5 sm:w-6 sm:h-6 hidden sm:flex items-center justify-center text-white/40 hover:text-white/80 transition-colors ${getHandlePos()}`}
                             >
-                                <svg width="10" height="10" viewBox="0 0 10 10">
+                                <svg width="8" height="8" viewBox="0 0 10 10" className="sm:w-[10px] sm:h-[10px]">
                                     <path d="M10 10L10 0L0 10Z" fill="currentColor" />
                                 </svg>
                             </div>
@@ -221,7 +257,11 @@ const ChatbotBubble: React.FC = () => {
                         : "bg-blue-600/80 hover:bg-blue-700/80"
                         }`}
                 >
-                    {isOpen ? <X className="text-white" size={32} /> : <MessageCircle className="text-white" size={32} />}
+                    {isOpen ? (
+                        <X className="text-white" size={20} />
+                    ) : (
+                        <MessageCircle className="text-white" size={20} />
+                    )}
                 </motion.button>
             </motion.div>
         </>
