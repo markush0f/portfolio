@@ -16,8 +16,11 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
 <Layout>
   <Navbar />
   <main>
-    <ChatbotBubble client:idle />
+    <!-- <ChatbotBubble client:idle /> -->
     <section id="home"><Home /></section>
+    <section id="technologies" data-aos="fade-up">
+      <Technologies />
+    </section>
     <section id="aboutme" data-aos="fade-up">
       <AboutMe />
       <Education />
@@ -31,9 +34,7 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
     <section id="certificates" data-aos="fade-up">
       <Certificates />
     </section>
-    <section id="technologies" data-aos="fade-up">
-      <Technologies />
-    </section>
+
     <div
       class="absolute bottom-1 lg:bottom-14 w-full flex justify-center animate-bounce"
     >
