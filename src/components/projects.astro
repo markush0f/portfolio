@@ -77,10 +77,17 @@ const projects: Project[] = [
     </div>
 
     <!-- Projects Grid -->
-    <div class="space-y-16">
+    <div class="space-y-16 md:space-y-24">
       {
         projects.map((project, index) => (
           <div class="group">
+            {/* Separator line for mobile */}
+            {index > 0 && (
+              <div class="md:hidden mb-16">
+                <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
+              </div>
+            )}
+            
             <div class={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${index % 2 !== 0 ? 'lg:grid-flow-dense' : ''}`}>
               <!-- Image -->
               <div class={`relative ${index % 2 !== 0 ? 'lg:col-start-2' : ''}`}>
@@ -95,7 +102,7 @@ const projects: Project[] = [
                   <img
                     src={project.img}
                     alt={project.name}
-                    class="w-full h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                    class="w-full h-48 md:h-56 lg:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
                   

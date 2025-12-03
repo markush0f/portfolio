@@ -1,66 +1,162 @@
 <nav
   id="navbar"
-  class="fixed w-full flex justify-between items-center gap-4 p-5 z-50
-    sm:justify-start sm:left-auto sm:right-0 sm:translate-x-0 transition-all duration-100
-    left-1/2 transform -translate-x-1/2 sm:mx-0 px-10 max-w-full"
+  class="fixed w-full flex justify-between items-center gap-4 p-5 z-50 transition-all duration-300
+    sm:justify-start sm:left-auto sm:right-0 sm:translate-x-0
+    left-1/2 transform -translate-x-1/2 sm:mx-0 px-6 lg:px-10 max-w-full"
 >
+  <!-- Profile section that appears on scroll -->
   <div
     id="scroll-content"
-    class="mr-auto lg:ml-20 flex items-center opacity-0 transform -translate-y-4 transition-all duration-300"
+    class="mr-auto lg:ml-20 flex items-center gap-3 opacity-0 transform -translate-y-4 transition-all duration-300"
   >
-    <img src="profile.jpeg" alt="profile" class="w-14 rounded-full" />
-    <h1 class="ml-4 lg:text-xl text-sm md:text-lg">Markus Abramian Medina</h1>
+    <div class="relative">
+      <div
+        class="absolute -inset-0.5 bg-gradient-to-r rounded-full opacity-75 blur"
+      >
+      </div>
+      <img
+        src="profile.jpeg"
+        alt="Markus Abramian Medina"
+        class="relative w-12 h-12 lg:w-14 lg:h-14 rounded-full object-cover border-2 border-gray-800"
+      />
+    </div>
+    <h1
+      class="text-sm md:text-base lg:text-xl font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+    >
+      Markus Abramian Medina
+    </h1>
   </div>
+
+  <!-- Mobile menu button -->
   <button
     id="menu-toggle"
-    class="sm:hidden p-2 focus:outline-none transform transition-all duration-300 hover:scale-110"
+    class="sm:hidden p-2 rounded-lg hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:scale-110"
+    aria-label="Toggle menu"
+    aria-expanded="false"
   >
-    <img src="icons/menu.svg" alt="menu" class="w-8" />
+    <svg
+      id="menu-icon"
+      class="w-7 h-7 text-gray-300"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <svg
+      id="close-icon"
+      class="w-7 h-7 text-gray-300 hidden"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
   </button>
+
+  <!-- Navigation menu -->
   <div
     id="menu"
-    class="hidden fixed top-20 left-0 right-0 w-full sm:border-b-0 sm:rounded-none border-b rounded-b flex-col pb-2 bg-[#1e1e1e] items-center z-40 sm:flex sm:flex-row sm:static sm:bg-transparent sm:shadow-none sm:w-auto"
+    class="hidden fixed top-20 left-0 right-0 w-full border-b border-gray-800
+      sm:flex sm:flex-row sm:static sm:bg-transparent sm:border-none sm:w-auto
+      flex-col items-center gap-1 sm:gap-2 lg:gap-4 py-4 sm:py-0 shadow-lg sm:shadow-none"
   >
     <a
       href="#home"
-      class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
+      class="nav-item group relative px-4 py-2 text-gray-300 hover:text-white transition-all duration-300 font-medium"
     >
-      Home
+      <span class="relative z-10">Home</span>
+      <div
+        class="absolute inset-0 bg-blue-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"
+      >
+      </div>
     </a>
+
     <a
       href="#aboutme"
-      class="nav-item p-2 transform transition-all duration-300 hover:scale-110 hover:text-highlighted flex sm:inline-flex"
+      class="nav-item group relative px-4 py-2 text-gray-300 hover:text-white transition-all duration-300 font-medium"
     >
-      About <span class="ml-1">me</span>
+      <span class="relative z-10">About me</span>
+      <div
+        class="absolute inset-0 bg-blue-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"
+      >
+      </div>
     </a>
+
     <a
       href="#experience"
-      class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
+      class="nav-item group relative px-4 py-2 text-gray-300 hover:text-white transition-all duration-300 font-medium"
     >
-      Experience
+      <span class="relative z-10">Experience</span>
+      <div
+        class="absolute inset-0 bg-blue-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"
+      >
+      </div>
     </a>
+
     <a
       href="#projects"
-      class="nav-item transform transition-all duration-300 hover:scale-110 hover:text-highlighted p-2"
+      class="nav-item group relative px-4 py-2 text-gray-300 hover:text-white transition-all duration-300 font-medium"
     >
-      Projects
-    </a>
-    <div
-      class="relative group transform transition-all duration-300 hover:scale-110"
-    >
-      <a href="/Resume.pdf" download="MARKUS-RESUME.pdf">
-        <img src="icons/cv.svg" alt="cv" class="w-8 sm:ml-4" />
-      </a>
+      <span class="relative z-10">Projects</span>
       <div
-        class="absolute top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-black text-white text-xs rounded py-1 px-2 w-auto"
+        class="absolute inset-0 bg-blue-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"
       >
-        Download CV
+      </div>
+    </a>
+
+    <!-- CV Download button -->
+    <div class="relative group sm:ml-2">
+      <a
+        href="/Resume.pdf"
+        download="MARKUS-RESUME.pdf"
+        class="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300 hover:scale-105 font-medium shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
+        </svg>
+        <span class="hidden sm:inline">CV</span>
+      </a>
+
+      <!-- Tooltip -->
+      <div
+        class="absolute top-full mt-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-50"
+      >
+        <div
+          class="bg-gray-900 text-white text-xs rounded-lg py-2 px-3 whitespace-nowrap shadow-xl border border-gray-700"
+        >
+          Download CV
+          <div
+            class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 border-l border-t border-gray-700 rotate-45"
+          >
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </nav>
+
 <script>
-  document.querySelectorAll("nav a").forEach((link) => {
+  // Smooth scroll to sections
+  document.querySelectorAll("nav a[href^='#']").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const targetId = link.getAttribute("href").substring(1);
@@ -80,17 +176,35 @@
           top: targetPosition,
           behavior: "smooth",
         });
-      } else {
-        console.error(`Element with ID '${targetId}' not found!`);
       }
 
+      // Close mobile menu after clicking
       const menu = document.getElementById("menu");
-      if (window.innerWidth < 680 && menu) {
+      const menuToggle = document.getElementById("menu-toggle");
+      if (window.innerWidth < 640 && menu) {
         menu.classList.add("hidden");
         menu.classList.remove("flex");
+        updateMenuIcon(false);
       }
     });
   });
+
+  // Update menu icon state
+  function updateMenuIcon(isOpen: boolean) {
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const menuToggle = document.getElementById("menu-toggle");
+
+    if (isOpen) {
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+      menuToggle?.setAttribute("aria-expanded", "true");
+    } else {
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    }
+  }
 
   document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.getElementById("navbar");
@@ -98,35 +212,51 @@
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
 
+    // Handle navbar background and profile visibility on scroll
     function handleScroll() {
-      if (window.scrollY > 400 || window.innerWidth < 680) {
-        navbar.classList.add("bg-[#1e1e1e]");
-        scrollContent.classList.add("opacity-100", "translate-y-0");
-        scrollContent.classList.remove("opacity-0", "-translate-y-4");
+      if (window.scrollY > 100) {
+        navbar?.classList.add(
+          "backdrop-blur-md",
+          "shadow-lg",
+          "border-b",
+          "border-gray-800/50"
+        );
+        scrollContent?.classList.add("opacity-100", "translate-y-0");
+        scrollContent?.classList.remove("opacity-0", "-translate-y-4");
       } else {
-        navbar.classList.remove("bg-[#1e1e1e]");
-        scrollContent.classList.add("opacity-0", "-translate-y-4");
-        scrollContent.classList.remove("opacity-100", "translate-y-0");
+        navbar?.classList.remove(
+          "backdrop-blur-md",
+          "shadow-lg",
+          "border-b",
+          "border-gray-800/50"
+        );
+        scrollContent?.classList.add("opacity-0", "-translate-y-4");
+        scrollContent?.classList.remove("opacity-100", "translate-y-0");
       }
     }
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial state
 
-    menuToggle.addEventListener("click", function () {
-      if (window.innerWidth < 680) {
-        // Solo funciona en pantallas pequeñas
-        menu.classList.toggle("hidden");
-        menu.classList.toggle("flex");
+    // Mobile menu toggle
+    menuToggle?.addEventListener("click", function () {
+      if (window.innerWidth < 640) {
+        const isHidden = menu?.classList.contains("hidden");
+        menu?.classList.toggle("hidden");
+        menu?.classList.toggle("flex");
+        updateMenuIcon(!isHidden);
       }
     });
 
+    // Handle window resize
     window.addEventListener("resize", function () {
-      if (window.innerWidth >= 680) {
-        menu.classList.remove("hidden");
-        menu.classList.add("flex");
+      if (window.innerWidth >= 640) {
+        menu?.classList.remove("hidden");
+        menu?.classList.add("flex");
+        updateMenuIcon(false);
       } else {
-        menu.classList.add("hidden");
-        menu.classList.remove("flex");
+        menu?.classList.add("hidden");
+        menu?.classList.remove("flex");
       }
     });
   });

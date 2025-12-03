@@ -15,6 +15,7 @@
     "@types/react-dom": "^19.0.2",
     "aos": "^2.3.4",
     "astro": "^5.1.5",
+    "chatbot-component-mark": "^0.0.2",
     "lucide-react": "^0.548.0",
     "motion": "^11.17.0",
     "react": "^19.0.0",

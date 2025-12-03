@@ -10,12 +10,13 @@ import AboutMe from "../components/aboutMe.astro";
 import Education from "../components/education.astro";
 import Footer from "../components/footer.astro";
 import Certificates from "../components/certificates.astro";
-import ProjectCarousel from "../components/ProjectCarousel.astro";
+import { ChatbotBubble } from "chatbot-component-mark";
 ---
 
 <Layout>
   <Navbar />
   <main>
+    <ChatbotBubble />
     <section id="home"><Home /></section>
     <section id="aboutme" data-aos="fade-up">
       <AboutMe />

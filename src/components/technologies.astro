@@ -1,65 +1,79 @@
 ---
 const technologies = [
   {
-    frameworks: ["react.svg", "spring.svg","junit.png", "jest.svg"],
+    frameworks: ["react.svg", "spring.svg", "junit.png", "jest.svg"],
     databases: ["mysql.svg", "mongodb.svg"],
     others: ["git.svg", "docker.svg", "linux.svg"],
     languages: ["python.svg", "java.svg", "typescript.svg"]
   },
 ];
+
+const categories = [
+  { name: "Frameworks", key: "frameworks" },
+  { name: "Databases", key: "databases" },
+  { name: "Languages", key: "languages" },
+  { name: "Others", key: "others" },
+];
 ---
-<div  class="max-w-4xl mx-auto relative">
-  <div class="flex mb-6">
-    <h1 class="text-3xl font-semibold  ml-10">TECHNOLOGIES</h1>
-    <img src="/icons/technology.svg" alt="" class="w-10 ml-4" />
-  </div>
-    <div class="">
+
+<section class="px-5 md:px-10 lg:px-20 py-20" id="technologies">
+  <div class="max-w-6xl mx-auto">
+    <!-- Title -->
+    <div class="mb-16 space-y-2">
+      <div class="flex items-center gap-4">
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+          Technologies
+        </h2>
+        <img src="/icons/technology.svg" alt="" class="w-10 h-10 opacity-80" />
+      </div>
+      <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
+    </div>
+
+    <!-- Technologies Grid -->
     {technologies.map((tech) => (
-      <div class="flex flex-col items-center p-6 sm:p-8 lg:p-10 rounded-lg h-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 w-full">
-          <!-- Primera fila -->
-          <div class="text-center">
-            <h3 class="text-lg sm:text-2xl font-semibold text-blue-500 mb-4 sm:mb-6">FRAMEWORKS</h3>
-            <ul class="flex justify-center gap-4 sm:gap-6">
-              {tech.frameworks.map((framework) => (
-                <li>
-                  <img src={`/icons/technologies/${framework}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
-                </li>
-              ))}
-            </ul>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {categories.map((category) => (
+          <div class="group relative">
+            <!-- Glow effect -->
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500"></div>
+            
+            <div class="relative bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-gray-700 transition-all duration-300 h-full">
+              <!-- Category Title -->
+              <div class="mb-6 text-center">
+                <h3 class="text-xl md:text-2xl font-bold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                  {category.name}
+                </h3>
+                <div class="w-12 h-0.5 bg-blue-500 rounded-full mx-auto mt-2"></div>
+              </div>
+
+              <!-- Icons Grid -->
+              <ul class="flex flex-wrap justify-center gap-6">
+                {tech[category.key as keyof typeof tech].map((item: string) => (
+                  <li class="group/icon">
+                    <div class="relative">
+                      <!-- Icon background effect -->
+                      <div class="absolute -inset-2 bg-blue-500 rounded-xl opacity-0 group-hover/icon:opacity-20 blur transition duration-300"></div>
+                      
+                      <div class="relative bg-gray-800/50 border border-gray-700 rounded-xl p-4 hover:border-blue-500/50 hover:bg-gray-800/70 transition-all duration-300 hover:scale-110">
+                        <img 
+                          src={`/icons/technologies/${item}`} 
+                          alt={item.replace(/\.(svg|png)$/, '')}
+                          class="w-14 h-14 object-contain"
+                        />
+                      </div>
+                      
+                      <!-- Tooltip with tech name -->
+                      <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/icon:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none z-10">
+                        {item.replace(/\.(svg|png)$/, '').replace(/-/g, ' ').toUpperCase()}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div class="text-center">
-            <h3 class="text-lg sm:text-2xl font-semibold text-blue-500 mb-4 sm:mb-6">DATABASES</h3>
-            <ul class="flex justify-center gap-4 sm:gap-6">
-              {tech.databases.map((database) => (
-                <li>
-                  <img src={`/icons/technologies/${database}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="text-center">
-            <h3 class="text-lg sm:text-2xl font-semibold text-blue-500 mb-4 sm:mb-6">LANGUAGES</h3>
-            <ul class="flex justify-center gap-4 sm:gap-6">
-              {tech.languages.map((language) => (
-                <li>
-                  <img src={`/icons/technologies/${language}`}  class="w-12 sm:w-14 h-12 sm:h-14" />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="text-center">
-            <h3 class="text-lg sm:text-2xl font-semibold text-blue-500 mb-4 sm:mb-6">OTHERS</h3>
-            <ul class="flex justify-center gap-4 sm:gap-6">
-              {tech.others.map((other) => (
-                <li>
-                  <img src={`/icons/technologies/${other}`} alt="" class="w-12 sm:w-14 h-12 sm:h-14" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        ))}
       </div>
     ))}
   </div>
-</div>
+</section>
