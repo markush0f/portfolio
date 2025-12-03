@@ -17,7 +17,18 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
   <Navbar />
   <main>
     <!-- <ChatbotBubble client:idle /> -->
-    <section id="home"><Home /></section>
+    <section id="home" class="relative">
+      <Home />
+
+      <!-- Scroll button INSIDE the home section -->
+      <div
+        class="absolute bottom-10 w-full flex justify-center animate-bounce z-50"
+      >
+        <button id="scroll-button" class="focus:outline-none">
+          <img src="/down.svg" alt="down icon" class="w-20 cursor-pointer" />
+        </button>
+      </div>
+    </section>
     <section id="technologies" data-aos="fade-up">
       <Technologies />
     </section>
@@ -43,17 +54,16 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
       </button>
     </div>
     <script>
-      document.getElementById("scroll-button").addEventListener("click", () => {
-        const target = document.getElementById("experience");
-        const offset = window.innerWidth < 680 ? 600 : 400;
-        const targetPosition = target
-          ? target.getBoundingClientRect().top + window.scrollY - offset
-          : 0;
+      document
+        .getElementById("scroll-button")!
+        .addEventListener("click", () => {
+          const next = document.getElementById("technologies");
 
-        if (targetPosition !== undefined) {
-          window.scrollTo({ top: targetPosition, behavior: "smooth" });
-        }
-      });
+          if (next) {
+            const pos = next.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: pos, behavior: "smooth" });
+          }
+        });
     </script>
   </main>
   <Footer />
