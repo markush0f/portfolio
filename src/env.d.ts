@@ -1,1 +1,1 @@
-declare module "chatbot-component-mark";
+// declare module "chatbot-component-mark";
