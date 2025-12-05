@@ -47,14 +47,11 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
       <Technologies />
     </section>
 
-    <div
-      class="absolute bottom-1 lg:bottom-14 w-full flex justify-center animate-bounce"
-    >
-      <button id="scroll-button" class="focus:outline-none">
-        <img src="/down.svg" alt="down icon" class="w-20 cursor-pointer" />
-      </button>
-    </div>
     <script>
+      fetch("https://api.ipify.org?format=json")
+        .then((r) => r.json())
+        .then(console.log);
+
       document
         .getElementById("scroll-button")!
         .addEventListener("click", () => {
