@@ -9,7 +9,7 @@ const ChatHeader: React.FC<Props> = ({ onDragStart, onClose }) => {
             onPointerDown={onDragStart}
             className="flex items-center justify-between p-2 sm:p-3 md:p-4 bg-[#1b1b1d] text-white border-b border-[#2a2a2d] cursor-move"
         >
-            <h3 className="text-xs sm:text-sm md:text-base font-semibold">Assistant</h3>
+            <h3 className="text-xs sm:text-sm md:text-base font-semibold">Assistant (Version 0.0.1)</h3>
             <button
                 onClick={(e) => {
                     e.stopPropagation();
