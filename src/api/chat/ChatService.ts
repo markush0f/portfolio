@@ -1,38 +1,31 @@
 export class ChatService {
-    private baseUrl: string;
-
-    constructor(baseUrl: string) {
-        this.baseUrl = baseUrl;
-    }
+    private baseUrl: string = import.meta.env.PUBLIC_API_URL;
 
     async createChat(userId: string): Promise<string> {
-        const res = await fetch(`${this.baseUrl}/chat/create/${userId}`, {
+        const response = await fetch(`${this.baseUrl}chat/create/${userId}`, {
             method: "POST"
         });
 
-        if (!res.ok) {
+        if (!response.ok) {
             throw new Error("Failed to create chat");
         }
 
-        const data = await res.json();
-
-        // IMPORTANT FIX
+        const data = await response.json();
         return data.chat_id;
     }
 
     async sendMessage(chatId: string, userId: string, message: string): Promise<string> {
-        const res = await fetch(`${this.baseUrl}/chat/send/${chatId}/${userId}`, {
+        const response = await fetch(`${this.baseUrl}chat/send/${chatId}/${userId}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message })
         });
 
-        if (!res.ok) {
+        if (!response.ok) {
             throw new Error("Failed to send message");
         }
 
-        const data = await res.json();
-
+        const data = await response.json();
         return data.reply || data.message || data;
     }
 }

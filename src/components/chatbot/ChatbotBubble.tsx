@@ -19,15 +19,14 @@ import type { Message } from "./types";
 import { ChatService } from "../../api/chat/ChatService";
 
 const ChatbotBubble: React.FC = () => {
-    const api = new ChatService("http://127.0.0.1:8000");
+    const api = new ChatService();
 
-    // Chat states
     const [isOpen, setIsOpen] = useState(false);
     const [chatId, setChatId] = useState<string | null>(null);
-    const userId = "486f6d30-6431-4868-b24d-53490a710672"; // Replace with real user
+    const userId = "1fa771ed-bc5e-4925-8676-5bae31f2d84e";
 
     const [messages, setMessages] = useState<Message[]>([
-        { id: "1", role: "bot", content: "Hello! **How can I help you today?**" }
+        { id: "1", role: "bot", content: "Hola!! **Preguntame algo sobre Markus!**" }
     ]);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);

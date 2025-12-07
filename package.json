@@ -3,8 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "dotenv -e .env.development -- astro dev",
+    "prepod": "dotenv -e .env.production -- astro dev",
+    "build": "dotenv -e .env.production -- astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -23,6 +24,7 @@
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
-    "@types/aos": "^3.0.7"
+    "@types/aos": "^3.0.7",
+    "dotenv-cli": "^11.0.0"
   }
 }

@@ -16,7 +16,7 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
 <Layout>
   <Navbar />
   <main>
-    <!-- <ChatbotBubble client:idle /> -->
+    <ChatbotBubble client:load />
     <section id="home" class="relative">
       <Home />
 
@@ -51,6 +51,7 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
       fetch("https://api.ipify.org?format=json")
         .then((r) => r.json())
         .then(console.log);
+      console.log(import.meta.env);
 
       document
         .getElementById("scroll-button")!
