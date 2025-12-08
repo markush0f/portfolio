@@ -5,7 +5,7 @@ import {
     useMotionValue,
     useTransform
 } from "framer-motion";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle, X, HelpCircle } from "lucide-react";
 
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
@@ -18,15 +18,43 @@ import { useDragPosition } from "./hooks/useDragPositio";
 import type { Message } from "./types";
 import { ChatService } from "../../api/chat/ChatService";
 
+// Added FAQ component
+const ChatFAQ = ({ onSelect }: { onSelect: (q: string) => void }) => {
+    const questions = [
+        "¿Quién es Markus?",
+        "¿Qué proyectos tiene Markus?",
+        "¿Qué tecnologías usa Markus?",
+    ];
+
+    return (
+        <div className="p-3 border-t border-white/20 bg-white/5 backdrop-blur-xl">
+            <h3 className="text-white text-sm font-semibold mb-2">Preguntas rápidas</h3>
+            <div className="flex flex-col gap-2">
+                {questions.map((q) => (
+                    <button
+                        key={q}
+                        onClick={() => onSelect(q)}
+                        className="text-left text-white/80 hover:text-white text-xs bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-colors"
+                    >
+                        {q}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+
 const ChatbotBubble: React.FC = () => {
     const api = new ChatService();
 
     const [isOpen, setIsOpen] = useState(false);
+    const [showFAQ, setShowFAQ] = useState(false); // Added FAQ state
     const [chatId, setChatId] = useState<string | null>(null);
     const userId = "1fa771ed-bc5e-4925-8676-5bae31f2d84e";
 
     const [messages, setMessages] = useState<Message[]>([
-        { id: "1", role: "bot", content: "Hola!! **Preguntame algo sobre Markus!**" }
+        { id: "1", role: "bot", content: "Hola!! **Pregúntame algo sobre Markus!**" }
     ]);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
@@ -35,10 +63,8 @@ const ChatbotBubble: React.FC = () => {
     const constraintsRef = useRef<HTMLDivElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    // Quadrant hook
     const { quadrant, updateQuadrant } = useQuadrant();
 
-    // Drag hook
     const {
         dragControls,
         isDragging,
@@ -47,24 +73,22 @@ const ChatbotBubble: React.FC = () => {
         handleDragEnd
     } = useDragPosition(() => updateQuadrant(containerRef.current));
 
-    // Tamaño inicial responsive del diálogo
     const getInitialWidth = () => {
         if (typeof window === 'undefined') return 320;
         const screenWidth = window.innerWidth;
-        if (screenWidth < 640) return Math.min(280, screenWidth - 40); // móvil
-        if (screenWidth < 768) return 300; // tablet pequeña
-        return 320; // desktop
+        if (screenWidth < 640) return Math.min(280, screenWidth - 40);
+        if (screenWidth < 768) return 300;
+        return 320;
     };
 
     const getInitialHeight = () => {
         if (typeof window === 'undefined') return 480;
         const screenHeight = window.innerHeight;
-        if (screenHeight < 640) return Math.min(420, screenHeight - 120); // móvil
-        if (screenHeight < 768) return 450; // tablet pequeña
-        return 480; // desktop
+        if (screenHeight < 640) return Math.min(420, screenHeight - 120);
+        if (screenHeight < 768) return 450;
+        return 480;
     };
 
-    // Resize hook con tamaños iniciales
     const width = useMotionValue(getInitialWidth());
     const height = useMotionValue(getInitialHeight());
     const widthPx = useTransform(width, (v) => `${v}px`);
@@ -77,62 +101,53 @@ const ChatbotBubble: React.FC = () => {
         () => updateQuadrant(containerRef.current)
     );
 
-    // Ajustar tamaño al cambiar el viewport
     useEffect(() => {
         const handleResize = () => {
-            const newWidth = getInitialWidth();
-            const newHeight = getInitialHeight();
+            const newW = getInitialWidth();
+            const newH = getInitialHeight();
 
-            // Solo actualizar si el tamaño actual es mayor que el nuevo máximo
-            if (width.get() > newWidth) {
-                width.set(newWidth);
-            }
-            if (height.get() > newHeight) {
-                height.set(newHeight);
-            }
+            if (width.get() > newW) width.set(newW);
+            if (height.get() > newH) height.set(newH);
         };
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [width, height]);
 
-    // Auto scroll
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, isOpen]);
 
-    // Open / close
     const toggleOpen = () => {
         if (isDragging.current) return;
         if (!isOpen) updateQuadrant(containerRef.current);
         setIsOpen(!isOpen);
     };
 
-    // ✔ Backend-integrated send message
-    const handleSendMessage = async () => {
-        if (!inputValue.trim()) return;
+    const handleSendMessage = async (forcedContent?: string) => {
+        const content = forcedContent ?? inputValue.trim();
+        if (!content) return;
 
         const msg: Message = {
             id: Date.now().toString(),
             role: "user",
-            content: inputValue
+            content
         };
 
         setMessages((p) => [...p, msg]);
         setInputValue("");
         setIsTyping(true);
+        setShowFAQ(false);
 
         try {
             let activeChat = chatId;
 
-            // Create chat if needed
             if (!activeChat) {
                 activeChat = await api.createChat(userId);
                 setChatId(activeChat);
             }
 
-            // Send to backend
-            const botReply = await api.sendMessage(activeChat, userId, msg.content);
+            const botReply = await api.sendMessage(activeChat, userId, content);
 
             setMessages((p) => [
                 ...p,
@@ -142,7 +157,7 @@ const ChatbotBubble: React.FC = () => {
                     content: botReply
                 }
             ]);
-        } catch (err) {
+        } catch {
             setMessages((p) => [
                 ...p,
                 {
@@ -156,7 +171,6 @@ const ChatbotBubble: React.FC = () => {
         setIsTyping(false);
     };
 
-    // UI helpers
     const getDialogPosition = () => {
         const m = "0.5rem";
         switch (quadrant) {
@@ -226,13 +240,27 @@ const ChatbotBubble: React.FC = () => {
                                 endRef={messagesEndRef}
                             />
 
+                            {/* FAQ toggle */}
+                            <button
+                                onClick={() => setShowFAQ((v) => !v)}
+                                className="px-3 py-2 text-xs flex items-center gap-2 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 transition-colors"
+                            >
+                                <HelpCircle size={14} />
+                                Preguntas rápidas
+                            </button>
+
+                            {showFAQ && (
+                                <ChatFAQ
+                                    onSelect={(q) => handleSendMessage(q)}
+                                />
+                            )}
+
                             <ChatInput
                                 value={inputValue}
                                 onChange={setInputValue}
-                                onSend={handleSendMessage}
+                                onSend={() => handleSendMessage()}
                             />
 
-                            {/* Resize handle - oculto en móvil */}
                             <div
                                 onPointerDown={startResize}
                                 className={`absolute w-5 h-5 sm:w-6 sm:h-6 hidden sm:flex items-center justify-center text-white/40 hover:text-white/80 transition-colors ${getHandlePos()}`}
