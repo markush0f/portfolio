@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { MouseEvent } from "react";
+import type { CSSProperties, MouseEvent } from "react";
 
 type NavItem = {
   href: string;
@@ -18,6 +18,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [navHeight, setNavHeight] = useState(0);
 
   // Track scroll position to toggle styling and profile visibility.
   useEffect(() => {
@@ -33,6 +34,9 @@ const Navbar = () => {
       const desktop = window.innerWidth >= 640;
       setIsDesktop(desktop);
       setMenuOpen(desktop);
+
+       // Keep mobile menu aligned below the navbar height.
+       setNavHeight(navbarRef.current?.offsetHeight ?? 0);
     };
 
     handleResize();
@@ -41,6 +45,7 @@ const Navbar = () => {
   }, []);
 
   const menuVisible = useMemo(() => isDesktop || menuOpen, [isDesktop, menuOpen]);
+  const menuTop = useMemo(() => (!isDesktop && navHeight ? navHeight : undefined), [isDesktop, navHeight]);
 
   const handleNavClick = (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -70,14 +75,13 @@ const Navbar = () => {
     <nav
       ref={navbarRef}
       id="navbar"
-      className={`fixed w-full flex justify-between items-center gap-4 p-5 z-50 transition-all duration-300
-        sm:justify-start sm:left-auto sm:right-0 left-1/2 transform sm:mx-0 px-6 lg:px-10 max-w-full
+      className={`fixed top-0 inset-x-0 flex justify-between items-center gap-4 p-5 z-50 transition-all duration-300
+        sm:justify-start px-6 lg:px-10 max-w-full
         ${scrolled ? "shadow-lg border-b border-gray-800/50" : ""}`}
       style={
         scrolled
           ? {
-              backgroundImage:
-                "linear-gradient(to bottom, #0f0f0f 0%, #1e1e1e 50%, #0f0f0f 100%)",
+              backgroundColor: "#141518",
             }
           : {
               background: "transparent",
@@ -131,15 +135,20 @@ const Navbar = () => {
 
       <div
         id="menu"
-        className={`${menuVisible ? "flex" : "hidden"} fixed top-20 left-0 right-0 w-full border-b border-gray-800
+        className={`${menuVisible ? "flex" : "hidden"} fixed left-0 right-0 w-full border-b border-gray-800
           sm:flex sm:flex-row sm:static sm:bg-transparent sm:border-none sm:w-auto
           flex-col items-center gap-1 sm:gap-2 lg:gap-4 py-4 sm:py-0 shadow-lg sm:shadow-none`}
         style={
           menuVisible && !isDesktop
             ? {
-                backgroundImage: "linear-gradient(to bottom, #0f0f0f 0%, #1e1e1e 50%, #0f0f0f 100%)",
+                backgroundColor: "#141518",
+                top: menuTop,
               }
-            : undefined
+            : (menuTop
+                ? ({
+                    top: menuTop,
+                  } as CSSProperties)
+                : undefined)
         }
       >
         {NAV_ITEMS.map((item) => (
@@ -153,8 +162,7 @@ const Navbar = () => {
             <div
               className="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 opacity-50"
               style={{
-                backgroundImage:
-                  "linear-gradient(to bottom, #0f0f0f 0%, #1e1e1e 50%, #0f0f0f 100%)",
+                backgroundColor: "#1d1f24",
               }}
             />
           </a>
