@@ -18,7 +18,6 @@ import { useDragPosition } from "./hooks/useDragPositio";
 import type { Message } from "./types";
 import { ChatService } from "../../api/chat/ChatService";
 
-// Added FAQ component
 const ChatFAQ = ({ onSelect }: { onSelect: (q: string) => void }) => {
     const questions = [
         "¿Quién es Markus?",
