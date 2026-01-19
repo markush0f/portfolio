@@ -35,8 +35,8 @@ const Navbar = () => {
       setIsDesktop(desktop);
       setMenuOpen(desktop);
 
-       // Keep mobile menu aligned below the navbar height.
-       setNavHeight(navbarRef.current?.offsetHeight ?? 0);
+      // Keep mobile menu aligned below the navbar height.
+      setNavHeight(navbarRef.current?.offsetHeight ?? 0);
     };
 
     handleResize();
@@ -81,11 +81,11 @@ const Navbar = () => {
       style={
         scrolled
           ? {
-              backgroundColor: "#141518",
-            }
+            backgroundColor: "#141518",
+          }
           : {
-              background: "transparent",
-            }
+            background: "transparent",
+          }
       }
     >
       <div
@@ -141,14 +141,14 @@ const Navbar = () => {
         style={
           menuVisible && !isDesktop
             ? {
-                backgroundColor: "#141518",
-                top: menuTop,
-              }
+              backgroundColor: "#141518",
+              top: menuTop,
+            }
             : (menuTop
-                ? ({
-                    top: menuTop,
-                  } as CSSProperties)
-                : undefined)
+              ? ({
+                top: menuTop,
+              } as CSSProperties)
+              : undefined)
         }
       >
         {NAV_ITEMS.map((item) => (
