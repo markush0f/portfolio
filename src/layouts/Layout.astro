@@ -18,19 +18,11 @@ import "../styles/global.css";
   </head>
   <body class="scroll-smooth">
     <slot />
-    <script>
-      import AOS from "aos";
-      AOS.init();
-    </script>
   </body>
 </html>
 
 <style>
   html {
     scroll-behavior: smooth;
-  }
-
-  section {
-    min-height: 100vh;
   }
 </style>

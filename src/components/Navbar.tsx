@@ -22,9 +22,18 @@ const Navbar = () => {
 
   // Track scroll position to toggle styling and profile visibility.
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 100);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -75,8 +84,8 @@ const Navbar = () => {
     <nav
       ref={navbarRef}
       id="navbar"
-      className={`fixed top-0 inset-x-0 flex justify-between items-center gap-4 p-5 z-50 transition-all duration-300
-        sm:justify-start px-6 lg:px-10 max-w-full
+      className={`fixed top-0 inset-x-0 flex justify-between items-center gap-4 p-3 z-50 transition-all duration-300
+        sm:justify-start px-4 lg:px-8 max-w-full
         ${scrolled ? "shadow-lg border-b border-gray-800/50" : ""}`}
       style={
         scrolled
@@ -98,7 +107,7 @@ const Navbar = () => {
           <img
             src="profile.jpeg"
             alt="Markus Abramian Medina"
-            className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-full object-cover border-2 border-gray-800"
+            className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover border-2 border-gray-800"
           />
         </div>
         <h1 className="text-sm md:text-base lg:text-xl font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">

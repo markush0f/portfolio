@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import Experience from "../components/experience.astro";
 import Home from "../components/home.astro";
 import Layout from "../layouts/Layout.astro";
-import "aos/dist/aos.css";
 import Technologies from "../components/technologies.astro";
 import Projects from "../components/projects.astro";
 import AboutMe from "../components/aboutMe.astro";
@@ -30,29 +29,24 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
       </div>
     </section>
 
-    <section id="aboutme" data-aos="fade-up">
+    <section id="aboutme" class="fade-section">
       <AboutMe />
       <Education />
     </section>
-    <section id="experience" data-aos="fade-up">
+    <section id="experience" class="fade-section">
       <Experience />
     </section>
-    <section id="projects" data-aos="fade-up" class="py-20">
+    <section id="projects" class="fade-section">
       <Projects />
     </section>
-    <section id="certificates" data-aos="fade-up">
+    <section id="certificates" class="fade-section">
       <Certificates />
     </section>
-    <section id="technologies" data-aos="fade-up">
+    <section id="technologies" class="fade-section">
       <Technologies />
     </section>
 
     <script>
-      fetch("https://api.ipify.org?format=json")
-        .then((r) => r.json())
-        .then(console.log);
-      console.log(import.meta.env);
-
       document
         .getElementById("scroll-button")!
         .addEventListener("click", () => {
@@ -63,10 +57,38 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
             window.scrollTo({ top: pos, behavior: "smooth" });
           }
         });
+
+      // Lightweight fade-in on scroll using IntersectionObserver (replaces AOS)
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll(".fade-section").forEach((el) => observer.observe(el));
     </script>
   </main>
   <Footer />
 </Layout>
+
+<style>
+  .fade-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .fade-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 
 <script>
   import { animate, stagger } from "motion";
