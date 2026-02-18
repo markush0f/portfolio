@@ -1,0 +1,126 @@
+---
+interface Agent {
+  name: string;
+  description: string;
+  technologies: string[];
+  url?: string;
+}
+
+const agents: Agent[] = [
+  {
+    name: "Personal Assistant",
+    description:
+      "An AI agent capable of managing tasks, scheduling, and providing personalized reminders.",
+    technologies: ["Python", "OpenAI", "FastAPI"],
+  },
+  {
+    name: "Code Reviewer",
+    description:
+      "Automated agent that reviews pull requests, suggesting improvements and detecting bugs.",
+    technologies: ["TypeScript", "LangChain", "GitHub API"],
+  },
+  {
+    name: "Data Analyst",
+    description:
+      "Processes large datasets to extract insights and generate visual reports automatically.",
+    technologies: ["Python", "Pandas", "Matplotlib"],
+  },
+];
+---
+
+<section class="px-5 md:px-10 lg:px-20 py-8" id="ai-agents">
+  <div class="max-w-5xl mx-auto">
+    <!-- Title -->
+    <div class="mb-8 space-y-2">
+      <div class="flex items-center gap-4">
+        <h2
+          class="text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+        >
+          AI Agents
+        </h2>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-8 h-8 opacity-80 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714a2.25 2.25 0 0 0 .659 1.591L19 14.5M14.25 3.104c.251.023.501.05.75.082M19 14.5l-1.46 1.46a2.25 2.25 0 0 1-1.591.659H8.051a2.25 2.25 0 0 1-1.591-.659L5 14.5m14 0V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v9.5"
+          ></path>
+        </svg>
+      </div>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"
+      >
+      </div>
+    </div>
+
+    <!-- Agents Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        agents.map((agent) => (
+          <div class="group">
+            <div class="relative">
+              <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
+
+              <div class="relative bg-gray-900/80 border border-gray-800 rounded-xl p-5 group-hover:border-gray-700 transition-colors duration-200 h-full">
+                <!-- Agent Name -->
+                <div class="mb-3">
+                  <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors duration-300 mb-1">
+                    {agent.name}
+                  </h3>
+                  <div class="w-12 h-0.5 bg-blue-500 rounded-full" />
+                </div>
+
+                <!-- Description -->
+                <p class="text-gray-300 leading-relaxed text-xs md:text-sm mb-3">
+                  {agent.description}
+                </p>
+
+                <!-- Technologies -->
+                <div class="flex flex-wrap gap-2">
+                  {agent.technologies.map((tech) => (
+                    <span class="text-xs px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 text-gray-300 hover:border-blue-500/50 hover:bg-gray-800/50 transition-all duration-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Optional URL link */}
+                {agent.url && (
+                  <div class="mt-4">
+                    <a
+                      href={agent.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300"
+                    >
+                      <span>View Project</span>
+                      <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

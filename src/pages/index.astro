@@ -10,6 +10,7 @@ import Education from "../components/education.astro";
 import Footer from "../components/footer.astro";
 import Certificates from "../components/certificates.astro";
 import ChatbotBubble from "../components/chatbot/ChatbotBubble";
+import AIAgents from "../components/AIAgents.astro";
 ---
 
 <Layout>
@@ -38,6 +39,9 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
     </section>
     <section id="projects" class="fade-section">
       <Projects />
+    </section>
+    <section id="ai-agents" class="fade-section">
+      <AIAgents />
     </section>
     <section id="certificates" class="fade-section">
       <Certificates />
@@ -68,10 +72,12 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
             }
           });
         },
-        { threshold: 0.1 }
+        { threshold: 0.1 },
       );
 
-      document.querySelectorAll(".fade-section").forEach((el) => observer.observe(el));
+      document
+        .querySelectorAll(".fade-section")
+        .forEach((el) => observer.observe(el));
     </script>
   </main>
   <Footer />
@@ -81,7 +87,9 @@ import ChatbotBubble from "../components/chatbot/ChatbotBubble";
   .fade-section {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
   }
 
   .fade-section.is-visible {

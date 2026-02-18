@@ -16,15 +16,15 @@ const categories = [
 ];
 ---
 
-<section class="px-5 md:px-10 lg:px-20 py-10" id="technologies">
-  <div class="max-w-6xl mx-auto">
+<section class="px-5 md:px-10 lg:px-20 py-8" id="technologies">
+  <div class="max-w-5xl mx-auto">
     <!-- Title -->
     <div class="mb-8 space-y-2">
       <div class="flex items-center gap-4">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+        <h2 class="text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Technologies
         </h2>
-        <img src="/icons/technology.svg" alt="" class="w-10 h-10 opacity-80" />
+        <img src="/icons/technology.svg" alt="" class="w-8 h-8 opacity-80" />
       </div>
       <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
     </div>
@@ -40,7 +40,7 @@ const categories = [
             <div class="relative bg-gray-900/80 border border-gray-800 rounded-2xl p-4 hover:border-gray-700 transition-colors duration-200 h-full">
               <!-- Category Title -->
               <div class="mb-4 text-center">
-                <h3 class="text-lg md:text-xl font-bold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                <h3 class="text-base md:text-lg font-bold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
                   {category.name}
                 </h3>
                 <div class="w-12 h-0.5 bg-blue-500 rounded-full mx-auto mt-2"></div>
@@ -58,7 +58,7 @@ const categories = [
                         <img 
                           src={`/icons/technologies/${item}`} 
                           alt={item.replace(/\.(svg|png)$/, '')}
-                          class="w-10 h-10 object-contain"
+                          class="w-8 h-8 object-contain"
                         />
                       </div>
                       

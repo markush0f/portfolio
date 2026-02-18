@@ -84,8 +84,8 @@ const Navbar = () => {
     <nav
       ref={navbarRef}
       id="navbar"
-      className={`fixed top-0 inset-x-0 flex justify-between items-center gap-4 p-3 z-50 transition-all duration-300
-        sm:justify-start px-4 lg:px-8 max-w-full
+      className={`fixed top-0 inset-x-0 flex justify-between items-center gap-4 p-2 z-50 transition-all duration-300
+        sm:justify-start px-3 lg:px-6 max-w-full
         ${scrolled ? "shadow-lg border-b border-gray-800/50" : ""}`}
       style={
         scrolled
@@ -107,10 +107,10 @@ const Navbar = () => {
           <img
             src="profile.jpeg"
             alt="Markus Abramian Medina"
-            className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover border-2 border-gray-800"
+            className="relative w-8 h-8 lg:w-10 lg:h-10 rounded-full object-cover border-2 border-gray-800"
           />
         </div>
-        <h1 className="text-sm md:text-base lg:text-xl font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+        <h1 className="text-xs md:text-sm lg:text-lg font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Markus Abramian Medina
         </h1>
       </div>
@@ -167,7 +167,7 @@ const Navbar = () => {
             onClick={handleNavClick(item.href)}
             className="nav-item group relative px-4 py-2 text-gray-300 hover:text-white transition-all duration-300 font-medium"
           >
-            <span className="relative z-10">{item.label}</span>
+            <span className="relative z-10 text-sm">{item.label}</span>
             <div
               className="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 opacity-50"
               style={{
