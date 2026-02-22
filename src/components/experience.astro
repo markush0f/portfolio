@@ -1,5 +1,5 @@
 ---
-const experienceData = [
+const experienceDataEn = [
   {
     title: "Internship at Seahorse",
     period: "April 2024 - July 2024 (4 months)",
@@ -36,6 +36,44 @@ const experienceData = [
     ],
   },
 ];
+
+const experienceDataEs = [
+  {
+    title: "Prácticas en Seahorse",
+    period: "Abril 2024 - Julio 2024 (4 meses)",
+    description: [
+      "Desarrollé soluciones usando Angular para el frontend y NestJS para el backend.",
+      "Gestioné bases de datos relacionales y no relacionales, enfocándome en MySQL.",
+      "Implementé pruebas unitarias y de integración para asegurar la calidad del software.",
+      "Contribuí al diseño de nuevas arquitecturas para próximos proyectos.",
+      "Apliqué metodologías BDD y TDD para un desarrollo eficiente y ágil.",
+    ],
+  },
+  {
+    title: "Desarrollador Full Stack en Eviden",
+    period: "Septiembre 2024 - Marzo 2025 (7 meses)",
+    description: [
+      "Desarrollé aplicaciones web usando Spring Boot y Java.",
+      "Gestioné bases de datos MySQL enfocado en la optimización de rendimiento y esquemas.",
+      "Implementé pruebas unitarias para asegurar la fiabilidad y mantenibilidad del código.",
+      "Trabajé bajo metodologías ágiles, colaborando con equipos multidisciplinares.",
+      "Utilicé Docker para la contenerización e integración eficiente en pipelines de CI/CD.",
+      "Configuré y mantuve entornos basados en Linux para despliegue y monitoreo.",
+    ],
+  },
+  {
+    title: "Desarrollador de Software en Metrotenerife",
+    period: "Abril 2025 - actualidad",
+    description: [
+      "Desarrollé aplicaciones web usando Spring Boot y Java, siguiendo principios de arquitectura limpia.",
+      "Construí interfaces dinámicas y responsivas usando React, asegurando usabilidad y accesibilidad.",
+      "Integré soluciones de AI/ML basadas en Python en servicios backend.",
+      "Diseñé y optimicé bases de datos SQL para rendimiento y escalabilidad.",
+      "Utilicé Docker para crear entornos de desarrollo y producción reproducibles.",
+      "Administré servidores Linux para hosting de aplicaciones, despliegue y configuraciones de red.",
+    ],
+  },
+];
 const wordsHighlights = [
   "React",
   "NestJS",
@@ -57,8 +95,11 @@ const wordsHighlights = [
     <!-- Title -->
     <div class="mb-6 space-y-2">
       <div class="flex items-center gap-4">
-        <h2 class="text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-          Experience
+        <h2 
+          class="text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+          data-i18n="experience.title"
+        >
+          Experiencia
         </h2>
         <img src="/icons/work.svg" alt="" class="w-8 h-8 opacity-80" />
       </div>
@@ -70,9 +111,9 @@ const wordsHighlights = [
       <!-- Vertical line -->
       <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500 via-blue-600 to-transparent"></div>
 
-      <div class="space-y-6">
+      <div class="space-y-6 lang-en">
         {
-          experienceData.map((exp, index) => (
+          experienceDataEn.map((exp) => (
             <div class="relative group">
               <!-- Timeline dot -->
               <div class="absolute -left-[2.40rem] md:-left-[3.40rem] top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900 group-hover:scale-125 group-hover:bg-blue-400 transition-transform duration-300 shadow-lg shadow-blue-500/50">
@@ -97,11 +138,67 @@ const wordsHighlights = [
                   </div>
                   <!-- Description -->
                   <ul class="space-y-1">
-                    {exp.description.map((item) => (
+                    {exp.description.map((item: string) => (
                       <li class="flex gap-2 text-gray-300 leading-relaxed text-sm">
                         <span class="text-blue-500 mt-1.5 flex-shrink-0">▹</span>
                         <span class="flex-1">
-                          {item.split(/\s+/).map((word) => {
+                          {item.split(/\s+/).map((word: string) => {
+                            const cleanWord = word.replace(/[.,:;!?(){}[\]]/g, "");
+                            return (
+                              <span
+                                class={`${
+                                  wordsHighlights.includes(cleanWord)
+                                    ? "text-blue-400 font-semibold hover:text-blue-300 transition-colors duration-200"
+                                    : ""
+                                }`}
+                              >
+                                {word}{" "}
+                              </span>
+                            );
+                          })}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="space-y-6 lang-es">
+        {
+          experienceDataEs.map((exp) => (
+            <div class="relative group">
+              <!-- Timeline dot -->
+              <div class="absolute -left-[2.40rem] md:-left-[3.40rem] top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900 group-hover:scale-125 group-hover:bg-blue-400 transition-transform duration-300 shadow-lg shadow-blue-500/50">
+              </div>
+
+              <!-- Content card -->
+              <div class="relative">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                
+                <div class="relative bg-gray-900/80 border border-gray-800 rounded-xl p-3 md:p-5 hover:border-gray-700 transition-colors duration-200">
+                  <!-- Header -->
+                  <div class="mb-3 space-y-1">
+                    <h3 class="text-lg md:text-xl font-semibold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                      {exp.title}
+                    </h3>
+                    <div class="flex items-center gap-2 text-gray-400">
+                      <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span class="text-xs md:text-sm">{exp.period}</span>
+                    </div>
+                  </div>
+                  <!-- Description -->
+                  <ul class="space-y-1">
+                    {exp.description.map((item: string) => (
+                      <li class="flex gap-2 text-gray-300 leading-relaxed text-sm">
+                        <span class="text-blue-500 mt-1.5 flex-shrink-0">▹</span>
+                        <span class="flex-1">
+                          {item.split(/\s+/).map((word: string) => {
                             const cleanWord = word.replace(/[.,:;!?(){}[\]]/g, "");
                             return (
                               <span

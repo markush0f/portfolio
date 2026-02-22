@@ -9,10 +9,10 @@ const technologies = [
 ];
 
 const categories = [
-  { name: "Frameworks", key: "frameworks" },
-  { name: "Databases", key: "databases" },
-  { name: "Languages", key: "languages" },
-  { name: "Others", key: "others" },
+  { nameEn: "Frameworks", nameEs: "Frameworks", key: "frameworks" },
+  { nameEn: "Databases", nameEs: "Bases de Datos", key: "databases" },
+  { nameEn: "Languages", nameEs: "Lenguajes", key: "languages" },
+  { nameEn: "Others", nameEs: "Otros", key: "others" },
 ];
 ---
 
@@ -21,8 +21,11 @@ const categories = [
     <!-- Title -->
     <div class="mb-8 space-y-2">
       <div class="flex items-center gap-4">
-        <h2 class="text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-          Technologies
+        <h2 
+          class="text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+          data-i18n="technologies.title"
+        >
+          Tecnologías
         </h2>
         <img src="/icons/technology.svg" alt="" class="w-8 h-8 opacity-80" />
       </div>
@@ -41,7 +44,8 @@ const categories = [
               <!-- Category Title -->
               <div class="mb-4 text-center">
                 <h3 class="text-base md:text-lg font-bold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
-                  {category.name}
+                  <span class="lang-en">{category.nameEn}</span>
+                  <span class="lang-es">{category.nameEs}</span>
                 </h3>
                 <div class="w-12 h-0.5 bg-blue-500 rounded-full mx-auto mt-2"></div>
               </div>

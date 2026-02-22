@@ -2,14 +2,15 @@
 const certificates = [
   {
     name: "Microservice Spring Boot and Spring Cloud",
-    description:
-      "Certified in Microservice Architecture using Spring Boot and Spring Cloud.",
+    descriptionEn: "Certified in Microservice Architecture using Spring Boot and Spring Cloud.",
+    descriptionEs: "Certificado en Arquitectura de Microservicios usando Spring Boot y Spring Cloud.",
     image: "/spring-microservice-certificate.jpg",
     downloadLink: "/spring-microservice-certificate.jpg",
   },
   {
     name: "React and Next.js",
-    description: "Certified React and NextJS.",
+    descriptionEn: "Certified React and NextJS.",
+    descriptionEs: "Certificado en React y NextJS.",
     image: "/react-certificate.jpg",
     downloadLink: "/react-certificate.jpg",
   },
@@ -21,8 +22,11 @@ const certificates = [
     <!-- Title -->
     <div class="mb-6 space-y-2">
       <div class="flex items-center gap-3">
-        <h2 class="text-lg md:text-xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-          Certificates
+        <h2 
+          class="text-lg md:text-xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+          data-i18n="certificates.title"
+        >
+          Certificados
         </h2>
         <img src="/icons/certificate.svg" alt="" class="w-6 h-6 opacity-80" />
       </div>
@@ -75,7 +79,8 @@ const certificates = [
 
                 <!-- View badge -->
                 <div class="absolute bottom-3 left-3 bg-blue-500/90 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-[10px] font-semibold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                  Click to view
+                  <span class="lang-en">Click to view</span>
+                  <span class="lang-es">Ver certificado</span>
                 </div>
               </div>
 
@@ -84,8 +89,11 @@ const certificates = [
                 <h3 class="text-sm md:text-base font-bold text-white group-hover:text-blue-400 transition-colors duration-300 line-clamp-1">
                   {certificate.name}
                 </h3>
-                <p class="text-gray-400 leading-relaxed text-xs line-clamp-2">
-                  {certificate.description}
+                <p class="text-gray-400 leading-relaxed text-xs line-clamp-2 lang-en">
+                  {certificate.descriptionEn}
+                </p>
+                <p class="text-gray-400 leading-relaxed text-xs line-clamp-2 lang-es">
+                  {certificate.descriptionEs}
                 </p>
 
                 <!-- Verification badge -->
@@ -93,7 +101,8 @@ const certificates = [
                   <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
-                  <span class="text-xs text-gray-500">Verified Certificate</span>
+                  <span class="text-xs text-gray-500 lang-en">Verified Certificate</span>
+                  <span class="text-xs text-gray-500 lang-es">Certificado Verificado</span>
                 </div>
               </div>
             </div>

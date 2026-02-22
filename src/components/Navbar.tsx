@@ -6,11 +6,11 @@ type NavItem = {
   label: string;
 };
 
-const NAV_ITEMS: NavItem[] = [
-  { href: "#home", label: "Home" },
-  { href: "#aboutme", label: "About me" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
+const NAV_ITEMS = (lang: 'en' | 'es'): NavItem[] => [
+  { href: "#home", label: lang === 'es' ? "Inicio" : "Home" },
+  { href: "#aboutme", label: lang === 'es' ? "Sobre mí" : "About Me" },
+  { href: "#experience", label: lang === 'es' ? "Experiencia" : "Experience" },
+  { href: "#projects", label: lang === 'es' ? "Proyectos" : "Projects" },
 ];
 
 const Navbar = () => {
@@ -19,6 +19,38 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [navHeight, setNavHeight] = useState(0);
+  const [lang, setLang] = useState<'en' | 'es'>('es');
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem('preferred-lang') as 'en' | 'es';
+    if (savedLang) {
+      setLang(savedLang);
+      document.documentElement.lang = savedLang;
+      document.documentElement.setAttribute('data-lang', savedLang);
+    }
+
+    const handleLangChange = (e: any) => {
+      setLang(e.detail);
+    };
+    window.addEventListener('languagechange', handleLangChange);
+    return () => window.removeEventListener('languagechange', handleLangChange);
+  }, []);
+
+  const toggleLanguage = () => {
+    const newLang = lang === 'es' ? 'en' : 'es';
+    setLang(newLang);
+    localStorage.setItem('preferred-lang', newLang);
+    document.documentElement.lang = newLang;
+    document.documentElement.setAttribute('data-lang', newLang);
+    window.dispatchEvent(new CustomEvent('languagechange', { detail: newLang }));
+
+    // Update static elements
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      // This is a bit of a hack since we don't have the full ui object here, 
+      // but we can rely on the fact that we'll implement a global script for Astro elements.
+    });
+  };
 
   // Track scroll position to toggle styling and profile visibility.
   useEffect(() => {
@@ -80,6 +112,8 @@ const Navbar = () => {
     setMenuOpen((prev) => !prev);
   };
 
+  const items = useMemo(() => NAV_ITEMS(lang), [lang]);
+
   return (
     <nav
       ref={navbarRef}
@@ -115,32 +149,43 @@ const Navbar = () => {
         </h1>
       </div>
 
-      <button
-        id="menu-toggle"
-        className="sm:hidden p-2 rounded-lg hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:scale-110"
-        aria-label="Toggle menu"
-        aria-expanded={menuOpen}
-        onClick={toggleMenu}
-      >
-        <svg
-          id="menu-icon"
-          className={`w-7 h-7 text-gray-300 ${menuOpen ? "hidden" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      <div className="flex items-center gap-2">
+        <button
+          onClick={toggleLanguage}
+          className="flex items-center gap-2 px-3 py-1.5 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-md transition-all duration-300 border border-gray-700 hover:border-gray-600 text-xs font-medium"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg
-          id="close-icon"
-          className={`w-7 h-7 text-gray-300 ${menuOpen ? "" : "hidden"}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          <span className={lang === 'en' ? 'text-blue-400 font-bold' : ''}>EN</span>
+          <span className="text-gray-500">|</span>
+          <span className={lang === 'es' ? 'text-blue-400 font-bold' : ''}>ES</span>
+        </button>
+
+        <button
+          id="menu-toggle"
+          className="sm:hidden p-2 rounded-lg hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:scale-110"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          onClick={toggleMenu}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+          <svg
+            id="menu-icon"
+            className={`w-7 h-7 text-gray-300 ${menuOpen ? "hidden" : ""}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg
+            id="close-icon"
+            className={`w-7 h-7 text-gray-300 ${menuOpen ? "" : "hidden"}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
 
       <div
         id="menu"
@@ -160,7 +205,7 @@ const Navbar = () => {
               : undefined)
         }
       >
-        {NAV_ITEMS.map((item) => (
+        {items.map((item) => (
           <a
             key={item.href}
             href={item.href}
@@ -191,12 +236,12 @@ const Navbar = () => {
                 d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               />
             </svg>
-            <span className="hidden sm:inline">CV</span>
+            <span className="hidden sm:inline">{lang === 'es' ? 'CV' : 'Resume'}</span>
           </a>
 
           <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-50">
             <div className="bg-gray-900 text-white text-xs rounded-lg py-2 px-3 whitespace-nowrap shadow-xl border border-gray-700">
-              Download CV
+              {lang === 'es' ? 'Descargar CV' : 'Download CV'}
               <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 border-l border-t border-gray-700 rotate-45" />
             </div>
           </div>
