@@ -18,7 +18,6 @@ export const ui = {
         'projects.title': 'Projects',
         'certificates.title': 'Certificates',
         'technologies.title': 'Technologies',
-        'footer.rights': 'All rights reserved.',
     },
     es: {
         'nav.home': 'Inicio',
@@ -32,6 +31,5 @@ export const ui = {
         'projects.title': 'Proyectos',
         'certificates.title': 'Certificados',
         'technologies.title': 'Tecnologías',
-        'footer.rights': 'Todos los derechos reservados.',
     },
 } as const;

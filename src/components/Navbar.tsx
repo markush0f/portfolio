@@ -131,9 +131,18 @@ const Navbar = () => {
           }
       }
     >
+      <button
+        onClick={toggleLanguage}
+        className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-md transition-all duration-300 border border-gray-700 hover:border-gray-600 text-[10px] md:text-xs font-medium shrink-0"
+      >
+        <span className={lang === 'en' ? 'text-blue-400 font-bold' : ''}>EN</span>
+        <span className="text-gray-500">|</span>
+        <span className={lang === 'es' ? 'text-blue-400 font-bold' : ''}>ES</span>
+      </button>
+
       <div
         id="scroll-content"
-        className={`mr-auto lg:ml-20 flex items-center gap-3 transform transition-all duration-300
+        className={`mr-auto flex items-center gap-2 md:gap-3 transform transition-all duration-300
           ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
       >
         <div className="relative">
@@ -141,24 +150,15 @@ const Navbar = () => {
           <img
             src="profile.jpeg"
             alt="Markus Abramian Medina"
-            className="relative w-8 h-8 lg:w-10 lg:h-10 rounded-full object-cover border-2 border-gray-800"
+            className="relative w-7 h-7 lg:w-9 lg:h-9 rounded-full object-cover border-2 border-gray-800"
           />
         </div>
-        <h1 className="text-xs md:text-sm lg:text-lg font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+        <h1 className="text-[10px] md:text-sm font-semibold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent truncate max-w-[120px] md:max-w-none">
           Markus Abramian Medina
         </h1>
       </div>
 
       <div className="flex items-center gap-2">
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center gap-2 px-3 py-1.5 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-md transition-all duration-300 border border-gray-700 hover:border-gray-600 text-xs font-medium"
-        >
-          <span className={lang === 'en' ? 'text-blue-400 font-bold' : ''}>EN</span>
-          <span className="text-gray-500">|</span>
-          <span className={lang === 'es' ? 'text-blue-400 font-bold' : ''}>ES</span>
-        </button>
-
         <button
           id="menu-toggle"
           className="sm:hidden p-2 rounded-lg hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:scale-110"
@@ -168,7 +168,7 @@ const Navbar = () => {
         >
           <svg
             id="menu-icon"
-            className={`w-7 h-7 text-gray-300 ${menuOpen ? "hidden" : ""}`}
+            className={`w-6 h-6 md:w-7 md:h-7 text-gray-300 ${menuOpen ? "hidden" : ""}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -177,7 +177,7 @@ const Navbar = () => {
           </svg>
           <svg
             id="close-icon"
-            className={`w-7 h-7 text-gray-300 ${menuOpen ? "" : "hidden"}`}
+            className={`w-6 h-6 md:w-7 md:h-7 text-gray-300 ${menuOpen ? "" : "hidden"}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
