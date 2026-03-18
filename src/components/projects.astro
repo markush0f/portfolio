@@ -14,17 +14,6 @@ interface Project {
 const routeTech = "icons/technologies/";
 const projects: Project[] = [
   {
-    id: 1,
-    name: "ENTITY GENERATOR",
-    descriptionEn:
-      "Web application created to generate entities for Spring projects. It allows defining attributes and relationships, validates data in real-time, and offers the download of the generated Java code.",
-    descriptionEs:
-      "Aplicación web creada para generar entidades para proyectos Spring. Permite definir atributos y relaciones, valida datos en tiempo real y ofrece la descarga del código Java generado.",
-    img: "projects/entity-generator.png",
-    url: "http://entity-generator.vercel.app",
-    technologies: ["astro.svg", "react.svg", "tailwind.svg"],
-  },
-  {
     id: 2,
     name: "NEXT CALL DEV",
     descriptionEn:
@@ -85,6 +74,17 @@ const projects: Project[] = [
       "vitejs.svg",
       "react.svg",
     ],
+  },
+  {
+    id: 6,
+    name: "Vault Secret Scanner",
+    descriptionEn:
+      "A hyper-fast local secret scanner CLI written in Rust that inspects repositories, servers, and configuration files for exposed API tokens and hardcoded keys, combining heuristic analysis, Blake3 caching, and an interactive TUI.",
+    descriptionEs:
+      "Un escaner local de secretos ultrarrapido escrito en Rust que inspecciona repositorios, servidores y archivos de configuracion en busca de tokens API expuestos y claves hardcodeadas, combinando analisis heuristico, cache con Blake3 y una TUI interactiva.",
+    img: "projects/vsc.png",
+    url: "https://github.com/markush0f/vault-secret-scanner",
+    technologies: ["rust.svg"],
   },
 ];
 ---
