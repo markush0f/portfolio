@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   themeColor?: string;
+  pageName?: string;
 }
 
 const {
   title = "Markus Abramian Medina | Portfolio",
   description = "Portfolio de Markus Abramian Medina, desarrollador full stack especializado en frontend, backend e integracion de IA.",
   themeColor = "#0f0f0f",
+  pageName = "default",
 } = Astro.props as Props;
 ---
 
@@ -25,7 +27,15 @@ const {
     <meta name="theme-color" content={themeColor} />
     <title>{title}</title>
   </head>
-  <body class="scroll-smooth">
+  <body class="scroll-smooth" data-page={pageName}>
+    <div
+      id="page-transition-overlay"
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 z-[999] opacity-0"
+    >
+      <div class="page-transition-surface"></div>
+      <div class="page-transition-line"></div>
+    </div>
     <slot />
   </body>
 </html>

@@ -119,6 +119,50 @@ img {
   color: transparent;
 }
 
+#page-transition-overlay {
+  isolation: isolate;
+}
+
+.page-transition-surface {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-secondary);
+  transform: scaleY(0);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.page-transition-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-blue) 22%,
+    var(--accent-blue-light) 50%,
+    var(--accent-blue) 78%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+body[data-page="freelance"] #page-transition-overlay {
+  opacity: 1;
+}
+
+body[data-page="freelance"] .page-transition-surface {
+  transform: scaleY(1);
+}
+
+body[data-page="freelance"] .page-transition-line {
+  transform: scaleX(1);
+}
+
 @keyframes pulse-glow {
   0%,
   100% {

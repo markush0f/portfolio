@@ -1,10 +1,20 @@
 {
   "version": 1,
   "skills": {
+    "animate": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "computedHash": "f9d491683c8ab76acb06f3c0b539bee16900a5a8ec3575b75137780e7378a108"
+    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",
       "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "gsap-core": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "computedHash": "b891c9ed42d9319685250231085ebe21538f2c844613b277b9dd2b3ff529a542"
     },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",

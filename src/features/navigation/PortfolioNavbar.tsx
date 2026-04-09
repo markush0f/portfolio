@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { gsap } from "gsap";
 
 import { profile } from "../../data/profile";
 import { useLanguage } from "../../i18n/useLanguage";
@@ -49,6 +50,67 @@ export function PortfolioNavbar() {
   const handleNavigate = (sectionId: string) => {
     scrollToSection(sectionId);
     setMenuOpen(false);
+  };
+
+  const handleFreelanceNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    setMenuOpen(false);
+
+    const overlay = document.getElementById("page-transition-overlay");
+    const surface = overlay?.querySelector<HTMLElement>(
+      ".page-transition-surface",
+    );
+    const line = overlay?.querySelector<HTMLElement>(".page-transition-line");
+
+    if (!overlay || !surface || !line) {
+      window.location.assign("/freelance");
+      return;
+    }
+
+    gsap.killTweensOf([overlay, surface, line]);
+    gsap.set(overlay, { opacity: 1, pointerEvents: "auto" });
+    gsap.set(surface, {
+      scaleY: 0,
+      transformOrigin: "top center",
+    });
+    gsap.set(line, {
+      scaleX: 0,
+      transformOrigin: "left center",
+      opacity: 1,
+    });
+
+    gsap
+      .timeline({
+        defaults: {
+          ease: "power2.out",
+        },
+        onComplete: () => window.location.assign("/freelance"),
+      })
+      .to(surface, {
+        scaleY: 1,
+        duration: 0.26,
+      })
+      .to(
+        line,
+        {
+          scaleX: 1,
+          duration: 0.22,
+        },
+        0.04,
+      );
   };
 
   return (
@@ -148,7 +210,8 @@ export function PortfolioNavbar() {
 
           <a
             href="/freelance"
-            className="rounded-lg px-4 py-2 text-left text-sm font-medium text-amber-300 transition-all duration-300 hover:bg-amber-500/10 hover:text-amber-200 sm:text-center"
+            onClick={handleFreelanceNavigation}
+            className="rounded-lg px-4 py-2 text-left text-sm font-medium text-blue-400 transition-all duration-300 hover:bg-blue-500/10 hover:text-blue-300 sm:text-center"
           >
             Freelancer
           </a>
