@@ -1,32 +1,50 @@
-import { ui, defaultLang } from './ui';
+import type { Language, LocalizedText } from "../types/content";
+import { defaultLang, type TranslationKey, ui } from "./ui";
 
-export type Lang = keyof typeof ui;
+const STORAGE_KEY = "preferred-lang";
 
-export function getTranslation(lang: Lang, key: keyof typeof ui[typeof defaultLang]) {
-    return ui[lang][key] || ui[defaultLang][key];
+export function isLanguage(value: string): value is Language {
+  return value === "en" || value === "es";
 }
 
-export function setLanguage(lang: Lang) {
-    localStorage.setItem('preferred-lang', lang);
-    document.documentElement.lang = lang;
-    document.documentElement.setAttribute('data-lang', lang);
-
-    // Dispatch custom event for React components to listen to
-    window.dispatchEvent(new CustomEvent('languagechange', { detail: lang }));
-
-    // Update all static elements with data-i18n attribute
-    document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.getAttribute('data-i18n') as keyof typeof ui[typeof defaultLang];
-        if (key && ui[lang][key]) {
-            el.textContent = ui[lang][key];
-        }
-    });
+export function getTranslation(
+  language: Language,
+  key: TranslationKey,
+): string {
+  return ui[language][key] ?? ui[defaultLang][key];
 }
 
-export function getCurrentLanguage(): Lang {
-    if (typeof localStorage !== 'undefined') {
-        const saved = localStorage.getItem('preferred-lang') as Lang;
-        if (saved && ui[saved]) return saved;
-    }
-    return defaultLang;
+export function getLocalizedText(
+  value: LocalizedText,
+  language: Language,
+): string {
+  return value[language] ?? value[defaultLang];
 }
+
+export function getStoredLanguage(): Language | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const savedLanguage = window.localStorage.getItem(STORAGE_KEY);
+  return savedLanguage && isLanguage(savedLanguage) ? savedLanguage : null;
+}
+
+export function setStoredLanguage(language: Language): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.localStorage.setItem(STORAGE_KEY, language);
+}
+
+export function applyDocumentLanguage(language: Language): void {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  document.documentElement.lang = language;
+  document.documentElement.setAttribute("data-lang", language);
+}
+
+export { defaultLang };
