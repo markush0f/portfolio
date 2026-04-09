@@ -1,5 +1,17 @@
 ---
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  themeColor?: string;
+}
+
+const {
+  title = "Markus Abramian Medina | Portfolio",
+  description = "Portfolio de Markus Abramian Medina, desarrollador full stack especializado en frontend, backend e integracion de IA.",
+  themeColor = "#0f0f0f",
+} = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -9,12 +21,9 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Portfolio de Markus Abramian Medina, desarrollador full stack especializado en frontend, backend e integración de IA."
-    />
-    <meta name="theme-color" content="#0f0f0f" />
-    <title>Markus Abramian Medina | Portfolio</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={themeColor} />
+    <title>{title}</title>
   </head>
   <body class="scroll-smooth">
     <slot />

@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { aboutContent } from "../data/about";
+
+const aboutParagraphs = [
+  "Soy un desarrollador de software graduado en un programa de Desarrollo de Aplicaciones, con experiencia trabajando con Spring Boot, React y FastAPI, ademas de contar con conocimientos en Python, Rust y TypeScript.",
+  "He utilizado MySQL y PostgreSQL como bases de datos principales en diversos proyectos y tengo experiencia en el despliegue de aplicaciones utilizando herramientas como Docker y Linux.",
+  "Mi pasion por aprender y mejorar constantemente me impulsa a buscar soluciones innovadoras y a mantenerme actualizado con las ultimas tendencias en el mundo del desarrollo.",
+];
+
+const fallbackParagraph = aboutContent.paragraphs[0]?.es;
+---
+
+<Layout
+  title="Freelancer | About Me"
+  description="Vista freelance minimalista centrada unicamente en el about me."
+  themeColor="#111315"
+>
+  <div class="freelance-shell min-h-screen bg-[#111315] text-[#f3efe8]">
+    <main
+      class="freelance-content mx-auto flex min-h-screen max-w-4xl flex-col px-6 py-10 md:px-10 md:py-14"
+    >
+      <a
+        href="/"
+        class="inline-flex w-fit items-center text-xs font-semibold uppercase tracking-[0.16em] text-[#c7b8a4] transition hover:text-white"
+      >
+        Volver
+      </a>
+
+      <section class="flex flex-1 flex-col justify-center py-16 md:py-24">
+        <div
+          class="grid items-start gap-10 md:grid-cols-[160px_minmax(0,1fr)] md:gap-12"
+        >
+          <div class="flex justify-start">
+            <img
+              src="/profile.jpeg"
+              alt="Foto de Markus Abramian Medina"
+              class="h-32 w-32 rounded-3xl border border-white/10 object-cover md:h-40 md:w-40"
+            />
+          </div>
+
+          <div class="max-w-3xl space-y-10">
+            <div class="space-y-4">
+              <p
+                class="text-xs font-semibold uppercase tracking-[0.18em] text-[#8fb7b1]"
+              >
+                Freelancer
+              </p>
+              <h1
+                class="freelance-heading text-4xl font-semibold leading-tight text-white md:text-5xl"
+              >
+                About me
+              </h1>
+            </div>
+
+            <div class="space-y-6 border-l border-white/10 pl-5 md:pl-7">
+              {
+                aboutParagraphs.map((paragraph) => (
+                  <p class="max-w-2xl text-base leading-8 text-[#b6bcc3] md:text-lg">
+                    {paragraph}
+                  </p>
+                ))
+              }
+
+              {
+                !aboutParagraphs.length && fallbackParagraph ? (
+                  <p class="max-w-2xl text-base leading-8 text-[#b6bcc3] md:text-lg">
+                    {fallbackParagraph}
+                  </p>
+                ) : null
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap");
+
+  .freelance-shell {
+    font-family: "Instrument Sans", sans-serif;
+    background-image: radial-gradient(
+      circle at top left,
+      rgba(143, 183, 177, 0.08),
+      transparent 30%
+    );
+    animation: freelance-surface-in 180ms ease-out both;
+  }
+
+  .freelance-heading {
+    font-family: "Instrument Sans", sans-serif;
+    letter-spacing: -0.045em;
+  }
+
+  .freelance-content {
+    animation: freelance-content-in 220ms ease-out both;
+  }
+
+  @keyframes freelance-surface-in {
+    from {
+      background-color: #0f0f0f;
+    }
+
+    to {
+      background-color: #111315;
+    }
+  }
+
+  @keyframes freelance-content-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+</style>
