@@ -1,31 +1,5 @@
 ---
-interface Agent {
-  name: string;
-  description: string;
-  technologies: string[];
-  url?: string;
-}
-
-const agents: Agent[] = [
-  {
-    name: "Personal Assistant",
-    description:
-      "An AI agent capable of managing tasks, scheduling, and providing personalized reminders.",
-    technologies: ["Python", "OpenAI", "FastAPI"],
-  },
-  {
-    name: "Code Reviewer",
-    description:
-      "Automated agent that reviews pull requests, suggesting improvements and detecting bugs.",
-    technologies: ["TypeScript", "LangChain", "GitHub API"],
-  },
-  {
-    name: "Data Analyst",
-    description:
-      "Processes large datasets to extract insights and generate visual reports automatically.",
-    technologies: ["Python", "Pandas", "Matplotlib"],
-  },
-];
+import { agents } from "../data/aiAgents";
 ---
 
 <section class="px-5 md:px-10 lg:px-20 py-8" id="ai-agents">

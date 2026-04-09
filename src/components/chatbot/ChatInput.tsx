@@ -1,5 +1,3 @@
-import { Send } from "lucide-react";
-
 interface Props {
     value: string;
     onChange: (val: string) => void;

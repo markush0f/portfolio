@@ -11,6 +11,8 @@ import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 import ChatHeader from "./ChatHeader";
 
+import { faqQuestions } from "../../data/chatbot/faqQuestions";
+import { initialMessages } from "../../data/chatbot/initialMessages";
 import { useQuadrant } from "./hooks/useQuadrant";
 import { useResize } from "./hooks/useResize";
 import { useDragPosition } from "./hooks/useDragPositio";
@@ -19,17 +21,11 @@ import type { Message } from "./types";
 import { ChatService } from "../../api/chat/ChatService";
 
 const ChatFAQ = ({ onSelect }: { onSelect: (q: string) => void }) => {
-    const questions = [
-        "¿Quién es Markus?",
-        "¿Qué proyectos tiene Markus?",
-        "¿Qué tecnologías usa Markus?",
-    ];
-
     return (
         <div className="p-3 border-t border-white/20 bg-white/5 backdrop-blur-xl">
             <h3 className="text-white text-sm font-semibold mb-2">Preguntas rápidas</h3>
             <div className="flex flex-col gap-2">
-                {questions.map((q) => (
+                {faqQuestions.map((q) => (
                     <button
                         key={q}
                         onClick={() => onSelect(q)}
@@ -52,9 +48,7 @@ const ChatbotBubble: React.FC = () => {
     const [chatId, setChatId] = useState<string | null>(null);
     const userId = "1fa771ed-bc5e-4925-8676-5bae31f2d84e";
 
-    const [messages, setMessages] = useState<Message[]>([
-        { id: "1", role: "bot", content: "Hola!! **Pregúntame algo sobre Markus!**" }
-    ]);
+    const [messages, setMessages] = useState<Message[]>(initialMessages);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
 

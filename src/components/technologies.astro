@@ -1,19 +1,6 @@
 ---
-const technologies = [
-  {
-    frameworks: ["react.svg", "spring.svg", "fastapi.svg", "astro.svg"],
-    databases: ["mysql.svg", "postgresql.svg"],
-    others: ["git.svg", "docker.svg", "linux.svg"],
-    languages: ["python.svg", "java.svg", "typescript.svg"]
-  },
-];
-
-const categories = [
-  { nameEn: "Frameworks", nameEs: "Frameworks", key: "frameworks" },
-  { nameEn: "Databases", nameEs: "Bases de Datos", key: "databases" },
-  { nameEn: "Languages", nameEs: "Lenguajes", key: "languages" },
-  { nameEn: "Others", nameEs: "Otros", key: "others" },
-];
+import { technologyCategories as categories } from "../data/technologyCategories";
+import { technologies } from "../data/technologies";
 ---
 
 <section class="px-5 md:px-10 lg:px-20 py-8" id="technologies">

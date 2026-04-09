@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { MotionValue } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 import type { Quadrant } from "../types";
 
 export function useResize(
