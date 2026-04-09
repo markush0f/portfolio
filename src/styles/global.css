@@ -24,9 +24,7 @@ html {
 
 body {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(59, 130, 246, 0.2), transparent 35%),
-    linear-gradient(180deg, #101114 0%, #0b0c0f 100%);
+  background: #0f0f0f;
   color: var(--text-primary);
   font-family: "Quicksand", sans-serif;
   line-height: 1.6;
