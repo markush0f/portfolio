@@ -1,0 +1,6 @@
+dist
+coverage
+node_modules
+.astro
+.agents
+package-lock.json
