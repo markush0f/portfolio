@@ -3,90 +3,20 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/icons/code.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Markus</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Quicksand:wght@300..700&family=Rubik:wght@300..900&display=swap"
-      rel="stylesheet"
+    <meta
+      name="description"
+      content="Portfolio de Markus Abramian Medina, desarrollador full stack especializado en frontend, backend e integración de IA."
     />
-    <script is:inline>
-      // Load translations
-      const translations = {
-        en: {
-          "nav.home": "Home",
-          "nav.aboutme": "About Me",
-          "nav.experience": "Experience",
-          "nav.projects": "Projects",
-          "nav.cv": "Resume",
-          "home.role": "Full Stack Developer",
-          "aboutme.title": "About Me",
-          "experience.title": "Experience",
-          "projects.title": "Projects",
-          "certificates.title": "Certificates",
-          "technologies.title": "Technologies",
-        },
-        es: {
-          "nav.home": "Inicio",
-          "nav.aboutme": "Sobre mí",
-          "nav.experience": "Experiencia",
-          "nav.projects": "Proyectos",
-          "nav.cv": "CV",
-          "home.role": "Desarrollador Full Stack",
-          "aboutme.title": "Sobre mí",
-          "experience.title": "Experiencia",
-          "projects.title": "Proyectos",
-          "certificates.title": "Certificados",
-          "technologies.title": "Tecnologías",
-        },
-      };
-
-      function updateLanguage(lang) {
-        document.documentElement.lang = lang;
-        document.documentElement.setAttribute("data-lang", lang);
-
-        document.querySelectorAll("[data-i18n]").forEach((el) => {
-          const key = el.getAttribute("data-i18n");
-          if (key && translations[lang][key]) {
-            el.textContent = translations[lang][key];
-          }
-        });
-
-        // Specialized handler for complex content (like aboutMe) if needed
-        window.dispatchEvent(
-          new CustomEvent("languagechange", { detail: lang }),
-        );
-      }
-
-      // Initial load
-      const savedLang = localStorage.getItem("preferred-lang") || "es";
-      updateLanguage(savedLang);
-
-      // Listen for changes from Navbar
-      window.addEventListener("languagechange", (e) => {
-        if (e.detail) updateLanguage(e.detail);
-      });
-    </script>
+    <meta name="theme-color" content="#0f0f0f" />
+    <title>Markus Abramian Medina | Portfolio</title>
   </head>
   <body class="scroll-smooth">
     <slot />
   </body>
 </html>
-
-<style is:global>
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Hide/show elements based on data-lang attribute */
-  [data-lang="en"] .lang-es {
-    display: none;
-  }
-  [data-lang="es"] .lang-en {
-    display: none;
-  }
-</style>
