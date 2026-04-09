@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useDragControls } from "motion/react";
+import { useDragControls } from "framer-motion";
 
 export function useDragPosition(updateQuadrant: () => void) {
   const dragControls = useDragControls();

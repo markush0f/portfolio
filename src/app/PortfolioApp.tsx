@@ -14,7 +14,7 @@ function PortfolioShell() {
   return (
     <>
       <PortfolioNavbar />
-      <main className="relative overflow-x-hidden">
+      <main className="relative">
         <ChatbotBubble />
         <HomeSection />
         <RevealSection id="about">

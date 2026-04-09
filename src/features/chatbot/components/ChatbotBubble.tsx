@@ -4,7 +4,7 @@ import {
   motion,
   useMotionValue,
   useTransform,
-} from "motion/react";
+} from "framer-motion";
 import { HelpCircle, MessageCircle, X } from "lucide-react";
 
 import { faqQuestions } from "../../../data/chatbot/faqQuestions";

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { MotionValue } from "motion/react";
+import type { MotionValue } from "framer-motion";
 
 import type { Quadrant } from "../types";
 

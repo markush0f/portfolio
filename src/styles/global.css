@@ -28,7 +28,7 @@ body {
   color: var(--text-primary);
   font-family: "Quicksand", sans-serif;
   line-height: 1.6;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -120,16 +120,19 @@ img {
 }
 
 @keyframes pulse-glow {
+
   0%,
   100% {
     box-shadow: 0 0 0 rgba(59, 130, 246, 0);
   }
+
   50% {
     box-shadow: 0 0 24px rgba(59, 130, 246, 0.35);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
