@@ -1,4 +1,6 @@
-export const agents = [
+import type { AiAgent } from "../types/content";
+
+export const aiAgents: AiAgent[] = [
   {
     name: "Personal Assistant",
     description:
