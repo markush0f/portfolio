@@ -8,6 +8,74 @@ interface FreelanceAboutGsapProps {
 export function FreelanceAboutGsap({ paragraphs }: FreelanceAboutGsapProps) {
   const rootRef = useRef<HTMLElement | null>(null);
 
+  const handleReturnNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const overlay = document.getElementById("page-transition-overlay");
+    const surface = overlay?.querySelector<HTMLElement>(
+      ".page-transition-surface",
+    );
+    const line = overlay?.querySelector<HTMLElement>(".page-transition-line");
+
+    if (!overlay || !surface || !line) {
+      window.location.assign("/");
+      return;
+    }
+
+    gsap.killTweensOf([overlay, surface, line]);
+    gsap.set(overlay, { opacity: 1, pointerEvents: "auto" });
+    gsap.set(surface, {
+      scaleY: 0,
+      transformOrigin: "top center",
+    });
+    gsap.set(line, {
+      scaleX: 0,
+      transformOrigin: "left center",
+      opacity: 1,
+    });
+
+    gsap
+      .timeline({
+        defaults: {
+          ease: "power2.out",
+        },
+        onComplete: () => window.location.assign("/"),
+      })
+      .to(surface, {
+        scaleY: 1,
+        duration: 0.26,
+      })
+      .to(
+        line,
+        {
+          scaleX: 1,
+          duration: 0.22,
+        },
+        0.04,
+      );
+  };
+
   useLayoutEffect(() => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -108,6 +176,7 @@ export function FreelanceAboutGsap({ paragraphs }: FreelanceAboutGsapProps) {
     >
       <a
         href="/"
+        onClick={handleReturnNavigation}
         className="inline-flex w-fit items-center text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-blue)] transition hover:text-[var(--accent-blue-light)]"
       >
         Volver
