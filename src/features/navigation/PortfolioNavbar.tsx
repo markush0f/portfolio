@@ -66,51 +66,64 @@ export function PortfolioNavbar() {
       return;
     }
 
+    const targetHref = event.currentTarget.href;
+
     event.preventDefault();
     setMenuOpen(false);
 
-    const overlay = document.getElementById("page-transition-overlay");
-    const surface = overlay?.querySelector<HTMLElement>(
-      ".page-transition-surface",
-    );
-    const line = overlay?.querySelector<HTMLElement>(".page-transition-line");
-
-    if (!overlay || !surface || !line) {
-      window.location.assign("/freelance");
-      return;
-    }
-
-    gsap.killTweensOf([overlay, surface, line]);
-    gsap.set(overlay, { opacity: 1, pointerEvents: "auto" });
-    gsap.set(surface, {
-      scaleY: 0,
-      transformOrigin: "top center",
-    });
-    gsap.set(line, {
-      scaleX: 0,
-      transformOrigin: "left center",
-      opacity: 1,
-    });
-
-    gsap
-      .timeline({
-        defaults: {
-          ease: "power2.out",
-        },
-        onComplete: () => window.location.assign("/freelance"),
-      })
-      .to(surface, {
-        scaleY: 1,
-        duration: 0.26,
-      })
-      .to(
-        line,
-        {
-          scaleX: 1,
-          duration: 0.22,
-        },
-        0.04,
+    try {
+      const overlay = document.getElementById("page-transition-overlay");
+      const surface = overlay?.querySelector<HTMLElement>(
+        ".page-transition-surface",
       );
+      const line = overlay?.querySelector<HTMLElement>(".page-transition-line");
+
+      if (!overlay || !surface || !line) {
+        window.location.assign(targetHref);
+        return;
+      }
+
+      const fallbackNavigation = window.setTimeout(() => {
+        window.location.assign(targetHref);
+      }, 420);
+
+      gsap.killTweensOf([overlay, surface, line]);
+      gsap.set(overlay, { opacity: 1, pointerEvents: "auto" });
+      gsap.set(surface, {
+        scaleY: 0,
+        transformOrigin: "top center",
+      });
+      gsap.set(line, {
+        scaleX: 0,
+        transformOrigin: "left center",
+        opacity: 1,
+      });
+
+      gsap
+        .timeline({
+          defaults: {
+            ease: "power2.out",
+          },
+          onComplete: () => {
+            window.clearTimeout(fallbackNavigation);
+            window.location.assign(targetHref);
+          },
+        })
+        .to(surface, {
+          scaleY: 1,
+          duration: 0.26,
+        })
+        .to(
+          line,
+          {
+            scaleX: 1,
+            duration: 0.22,
+          },
+          0.04,
+        );
+    } catch {
+      window.location.assign(targetHref);
+    }
   };
 
   return (

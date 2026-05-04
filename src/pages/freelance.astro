@@ -1,42 +1,24 @@
 ---
 import { FreelanceAboutGsap } from "../features/freelance/components/FreelanceAboutGsap";
 import Layout from "../layouts/Layout.astro";
-import { aboutContent } from "../data/about";
-
-const aboutParagraphs = [
-  "Soy un desarrollador de software graduado en un programa de Desarrollo de Aplicaciones, con experiencia trabajando con Spring Boot, React y FastAPI, ademas de contar con conocimientos en Python, Rust y TypeScript.",
-  "He utilizado MySQL y PostgreSQL como bases de datos principales en diversos proyectos y tengo experiencia en el despliegue de aplicaciones utilizando herramientas como Docker y Linux.",
-  "Mi pasion por aprender y mejorar constantemente me impulsa a buscar soluciones innovadoras y a mantenerme actualizado con las ultimas tendencias en el mundo del desarrollo.",
-];
-
-const paragraphs =
-  aboutParagraphs.length > 0
-    ? aboutParagraphs
-    : aboutContent.paragraphs[0]?.es
-      ? [aboutContent.paragraphs[0].es]
-      : [];
 ---
 
 <Layout
-  title="Freelancer | About Me"
-  description="Vista freelance minimalista centrada unicamente en el about me."
+  title="Freelancer Portfolio"
+  description="Pagina freelance de Markus Abramian Medina, enfocada en una propuesta honesta para proyectos web y de software."
   themeColor="#0f0f0f"
   pageName="freelance"
 >
   <div
     class="freelance-shell min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
   >
-    <FreelanceAboutGsap client:load paragraphs={paragraphs} />
+    <FreelanceAboutGsap client:load />
   </div>
 </Layout>
 
 <style>
   .freelance-shell {
-    background-image: radial-gradient(
-      circle at top left,
-      rgba(59, 130, 246, 0.08),
-      transparent 32%
-    );
+    background: #0b0d10;
     color: var(--text-primary);
   }
 </style>
