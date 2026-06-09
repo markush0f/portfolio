@@ -157,9 +157,9 @@ export function PortfolioNavbar() {
           )}
         >
           <img
-            src={profile.profileImage}
-            alt={profile.fullName}
-            className="h-9 w-9 rounded-full border-2 border-gray-800 object-cover"
+            src="/icons/code.svg"
+            alt="Logo"
+            className="h-7 w-7"
           />
           <span className="max-w-[180px] truncate text-sm font-semibold text-white">
             {profile.fullName}
