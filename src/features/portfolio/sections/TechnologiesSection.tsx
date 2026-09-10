@@ -11,7 +11,7 @@ export function TechnologiesSection() {
   const { language, t } = useLanguage();
 
   return (
-    <div className="px-5 py-8 md:px-10 lg:px-20">
+    <div className="px-5 pb-28 pt-16 md:px-10 lg:px-20">
       <div className="mx-auto max-w-5xl">
         <SectionHeading title={t("sections.technologies")} icon={Cpu} />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

@@ -9,7 +9,7 @@ export function CertificatesSection() {
   const { language, t } = useLanguage();
 
   return (
-    <div className="px-5 py-8 md:px-10 lg:px-20">
+    <div className="px-5 py-16 md:px-10 lg:px-20">
       <div className="mx-auto max-w-3xl">
         <SectionHeading title={t("sections.certificates")} icon={Medal} compact />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

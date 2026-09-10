@@ -16,17 +16,31 @@ const navigationItems = [
 ] as const;
 
 function getActiveSection() {
-  const offset = 160;
+  const probe = Math.round(Math.min(window.innerHeight * 0.22, 180));
+  const scrollBottom = window.scrollY + window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
+  const nearBottom = scrollBottom >= pageHeight - 24;
 
-  for (let index = navigationItems.length - 1; index >= 0; index -= 1) {
-    const section = document.getElementById(navigationItems[index].id);
+  if (nearBottom) {
+    return navigationItems[navigationItems.length - 1].id;
+  }
 
-    if (section && section.getBoundingClientRect().top <= offset) {
-      return navigationItems[index].id;
+  let current: string = "home";
+
+  for (const item of navigationItems) {
+    const section = document.getElementById(item.id);
+    if (!section) continue;
+
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= probe && rect.bottom > probe) {
+      return item.id;
+    }
+    if (rect.top <= probe) {
+      current = item.id;
     }
   }
 
-  return "home";
+  return current;
 }
 
 export function PortfolioNavbar() {
@@ -48,6 +62,7 @@ export function PortfolioNavbar() {
   }, []);
 
   const handleNavigate = (sectionId: string) => {
+    setActiveSection(sectionId);
     scrollToSection(sectionId);
     setMenuOpen(false);
   };
