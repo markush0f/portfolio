@@ -14,17 +14,17 @@ export const profile: Profile = {
     {
       label: "GitHub",
       href: "https://github.com/markush0f",
-      icon: "/icons/github_dark.svg",
+      icon: "github",
     },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/markus-abramian-medina-1b0281273/",
-      icon: "/icons/linkedin.svg",
+      icon: "linkedin",
     },
     {
       label: "Email",
       href: "mailto:abramianmedina@gmail.com",
-      icon: "/icons/mail.svg",
+      icon: "mail",
     },
   ],
 };
