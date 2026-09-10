@@ -17,6 +17,10 @@ export const experienceHighlightWords = [
   "FastAPI",
   "Rust",
   "PostgreSQL",
+  "Codex",
+  "IA",
+  "AI",
+  "Ignos",
 ];
 
 export const experienceItems: ExperienceItem[] = [
@@ -40,7 +44,7 @@ export const experienceItems: ExperienceItem[] = [
       ],
       es: [
         "Desarrollé soluciones usando Angular para el frontend y NestJS para el backend.",
-        "Gestioné bases de datos relacionales y no relacionales, enfocándome en MySQL.",
+        "Gestióné bases de datos relacionales y no relacionales, enfocándome en MySQL.",
         "Implementé pruebas unitarias y de integración para asegurar la calidad del software.",
         "Contribuí al diseño de nuevas arquitecturas para próximos proyectos.",
         "Apliqué metodologías BDD y TDD para un desarrollo eficiente y ágil.",
@@ -68,7 +72,7 @@ export const experienceItems: ExperienceItem[] = [
       ],
       es: [
         "Desarrollé aplicaciones web usando Spring Boot y Java.",
-        "Gestioné bases de datos MySQL enfocado en la optimización de rendimiento y esquemas.",
+        "Gestióné bases de datos MySQL enfocado en la optimización de rendimiento y esquemas.",
         "Implementé pruebas unitarias para asegurar la fiabilidad y mantenibilidad del código.",
         "Trabajé bajo metodologías ágiles, colaborando con equipos multidisciplinares.",
         "Utilicé Docker para la contenerización e integración eficiente en pipelines de CI/CD.",
@@ -83,8 +87,8 @@ export const experienceItems: ExperienceItem[] = [
       es: "Desarrollador de Software en Metrotenerife",
     },
     period: {
-      en: "April 2025 - Present",
-      es: "Abril 2025 - Actualidad",
+      en: "April 2025 - April 2026",
+      es: "Abril 2025 - Abril 2026",
     },
     description: {
       en: [
@@ -102,6 +106,33 @@ export const experienceItems: ExperienceItem[] = [
         "Diseñé y optimicé bases de datos SQL enfocadas en rendimiento y escalabilidad.",
         "Utilicé Docker para crear entornos de desarrollo y producción reproducibles.",
         "Administré servidores Linux para el alojamiento de aplicaciones, despliegues y configuraciones de red.",
+      ],
+    },
+  },
+  {
+    id: 4,
+    title: {
+      en: "Full Stack Developer at Ignos",
+      es: "Desarrollador Full Stack en Ignos",
+    },
+    period: {
+      en: "May 2026 - Present",
+      es: "Mayo 2026 - Actualidad",
+    },
+    description: {
+      en: [
+        "Working as a Full Stack Developer on product and internal tools at Ignos.",
+        "Building backend services with Java, Spring Boot and Python.",
+        "Developing frontend and application logic with TypeScript.",
+        "Designing and querying PostgreSQL databases.",
+        "Integrating AI workflows and using Codex to accelerate development.",
+      ],
+      es: [
+        "Trabajo como Desarrollador Full Stack en producto y herramientas internas de Ignos.",
+        "Desarrollo servicios backend con Java, Spring Boot y Python.",
+        "Implemento frontend y lógica de aplicación con TypeScript.",
+        "Diseño y consulto bases de datos PostgreSQL.",
+        "Integro flujos de IA y uso Codex para acelerar el desarrollo.",
       ],
     },
   },
