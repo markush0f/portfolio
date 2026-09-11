@@ -1,4 +1,4 @@
-const DEFAULT_NAV_OFFSET = 88;
+const DEFAULT_NAV_OFFSET = 96;
 
 export function scrollToSection(
   sectionId: string,
@@ -18,7 +18,7 @@ export function scrollToSection(
     targetSection.getBoundingClientRect().top + window.scrollY - offset;
 
   window.scrollTo({
-    top: Math.max(0, top),
+    top,
     behavior: "smooth",
   });
 }

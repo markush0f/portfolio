@@ -3,12 +3,11 @@ import type { AboutContent } from "../types/content";
 export const aboutContent: AboutContent = {
   paragraphs: [
     {
-      es: "Soy un Desarrollador Full Stack. Ahora trabajo en Ignos, donde construyo producto con Python, Java, TypeScript, Spring Boot y PostgreSQL, e integro IA y Codex en el día a día. Antes he trabajado con Spring Boot, React y FastAPI, y también con Rust. He usado MySQL y PostgreSQL como bases de datos principales y tengo experiencia desplegando con Docker y Linux. Me interesa aprender de forma continua y aplicar herramientas nuevas cuando aportan valor real.",
-      en: "I am a Full Stack Developer. I currently work at Ignos, building product with Python, Java, TypeScript, Spring Boot and PostgreSQL, and integrating AI and Codex into day-to-day work. I have previously worked with Spring Boot, React and FastAPI, as well as Rust. I have used MySQL and PostgreSQL as primary databases and have experience deploying with Docker and Linux. I care about continuous learning and using new tools when they actually help.",
+      es: "Soy un desarrollador de software graduado en un programa de Desarrollo de Aplicaciones, con experiencia trabajando con Spring Boot, React y FastAPI, además de contar con conocimientos en Python, Rust y TypeScript. He utilizado MySQL y PostgreSQL como bases de datos principales en diversos proyectos y tengo experiencia en el despliegue de aplicaciones utilizando herramientas como Docker y Linux. Mi pasión por aprender y mejorar constantemente me impulsa a buscar soluciones innovadoras y a mantenerme actualizado con las últimas tendencias en el mundo del desarrollo.",
+      en: "I am a software developer graduated from an Application Development program, with experience working with Spring Boot, React, and FastAPI, as well as proficiency in Python, Rust, and TypeScript. I have used MySQL and PostgreSQL as primary databases in various projects and have experience in application deployment, working with tools such as Docker and Linux. My passion for constant learning and improvement drives me to seek innovative solutions and stay up to date with the latest trends in the development world.",
     },
   ],
   highlightWords: [
-    "Ignos",
     "React",
     "NestJS",
     "MySQL",
@@ -24,8 +23,5 @@ export const aboutContent: AboutContent = {
     "FastAPI",
     "Rust",
     "PostgreSQL",
-    "Codex",
-    "IA",
-    "AI",
   ],
 };

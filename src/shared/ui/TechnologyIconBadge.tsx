@@ -17,14 +17,14 @@ export function TechnologyIconBadge({
   tooltip = false,
 }: TechnologyIconBadgeProps) {
   const label = getTechnologyLabel(icon);
-  const iconSize = size === "sm" ? "h-5 w-5" : "h-7 w-7";
+  const iconSize = size === "sm" ? "h-6 w-6" : "h-8 w-8";
+  const wrapperPadding = size === "sm" ? "p-2.5" : "p-2";
 
   return (
     <div className="group/tech relative">
+      <div className="absolute -inset-2 rounded-xl bg-blue-500 opacity-0 transition-opacity duration-200 group-hover/tech:opacity-20" />
       <div
-        className={`relative flex items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] transition duration-200 hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white/[0.06] ${
-          size === "sm" ? "h-11 w-11" : "h-14 w-14"
-        }`}
+        className={`relative rounded-xl border border-gray-700 bg-gray-800/50 transition-all duration-200 hover:border-blue-500/50 hover:bg-gray-800/70 ${wrapperPadding}`}
       >
         <img
           src={`/icons/technologies/${icon}`}
@@ -34,7 +34,7 @@ export function TechnologyIconBadge({
       </div>
 
       {tooltip ? (
-        <div className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/10 bg-[#0b0f14] px-2.5 py-1 text-[10px] font-medium tracking-wide text-white/80 opacity-0 transition-opacity duration-300 group-hover/tech:opacity-100">
+        <div className="pointer-events-none absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs text-white opacity-0 transition-opacity duration-300 group-hover/tech:opacity-100">
           {label}
         </div>
       ) : null}
