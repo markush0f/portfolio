@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Quicksand:wght@300..700&display=swap");
 
 :root {
-  --bg-primary: #07090d;
-  --bg-secondary: #0d1117;
-  --text-primary: #eef2f6;
-  --text-secondary: #9aa6b2;
-  --accent-blue: #38bdf8;
-  --accent-blue-light: #7dd3fc;
-  --accent-purple: #818cf8;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #15161a;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --accent-blue: #3b82f6;
+  --accent-blue-light: #60a5fa;
+  --accent-purple: #8b5cf6;
+  --border-color: #2a2a2a;
 }
 
 * {
@@ -24,13 +24,11 @@ html {
 
 body {
   min-height: 100vh;
-  background:
-    radial-gradient(1200px 600px at 15% -10%, rgba(56, 189, 248, 0.12), transparent 55%),
-    radial-gradient(900px 500px at 90% 10%, rgba(129, 140, 248, 0.1), transparent 50%),
-    #07090d;
+  background: #0f0f0f;
   color: var(--text-primary);
-  font-family: "Manrope", sans-serif;
+  font-family: "Quicksand", sans-serif;
   line-height: 1.6;
+  /* overflow-x: hidden; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -50,10 +48,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Outfit", sans-serif;
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 h1 {
@@ -110,12 +108,12 @@ img {
 }
 
 .glass-panel {
-  background: rgba(7, 9, 13, 0.72);
+  background: rgba(17, 24, 39, 0.78);
   backdrop-filter: blur(18px);
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #ffffff 0%, #9aa6b2 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #9ca3af 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -163,6 +161,17 @@ body[data-page="freelance"] .page-transition-surface {
 
 body[data-page="freelance"] .page-transition-line {
   transform: scaleX(1);
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(59, 130, 246, 0.35);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
