@@ -4,6 +4,7 @@ import {
 } from "../../../data/experience";
 import { useLanguage } from "../../../i18n/useLanguage";
 import { getLocalizedText } from "../../../i18n/utils";
+import { formatExperiencePeriod } from "../../../shared/lib/formatExperiencePeriod";
 import { HighlightedText } from "../../../shared/ui/HighlightedText";
 import { SectionHeading } from "../../../shared/ui/SectionHeading";
 import { Timeline, TimelineItem } from "../../../shared/ui/Timeline";
@@ -41,7 +42,11 @@ export function ExperienceSection() {
                     />
                   </svg>
                   <span className="text-xs md:text-sm">
-                    {getLocalizedText(experience.period, language)}
+                    {formatExperiencePeriod(
+                      experience.startDate,
+                      experience.endDate,
+                      language,
+                    )}
                   </span>
                 </div>
               </div>

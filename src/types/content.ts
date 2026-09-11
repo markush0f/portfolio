@@ -29,7 +29,8 @@ export interface CarouselProject {
 export interface ExperienceItem {
   id: number;
   title: LocalizedText;
-  period: LocalizedText;
+  startDate: string;
+  endDate?: string;
   description: LocalizedList;
 }
 

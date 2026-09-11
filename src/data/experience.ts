@@ -30,10 +30,8 @@ export const experienceItems: ExperienceItem[] = [
       en: "Internship at Seahorse",
       es: "Prácticas en Seahorse",
     },
-    period: {
-      en: "April 2024 - July 2024 (4 months)",
-      es: "Abril 2024 - Julio 2024 (4 meses)",
-    },
+    startDate: "2024-04",
+    endDate: "2024-07",
     description: {
       en: [
         "Developed solutions using Angular for the frontend and NestJS for the backend.",
@@ -57,10 +55,8 @@ export const experienceItems: ExperienceItem[] = [
       en: "Full Stack Developer at Eviden",
       es: "Desarrollador Full Stack en Eviden",
     },
-    period: {
-      en: "September 2024 - March 2025 (7 months)",
-      es: "Septiembre 2024 - Marzo 2025 (7 meses)",
-    },
+    startDate: "2024-09",
+    endDate: "2025-03",
     description: {
       en: [
         "Developed web applications using Spring Boot and Java.",
@@ -86,10 +82,8 @@ export const experienceItems: ExperienceItem[] = [
       en: "Software Developer at Metrotenerife",
       es: "Desarrollador de Software en Metrotenerife",
     },
-    period: {
-      en: "April 2025 - April 2026",
-      es: "Abril 2025 - Abril 2026",
-    },
+    startDate: "2025-04",
+    endDate: "2026-04",
     description: {
       en: [
         "Developed web applications using Spring Boot, Java, and TypeScript following clean architecture principles.",
@@ -115,10 +109,7 @@ export const experienceItems: ExperienceItem[] = [
       en: "Full Stack Developer at Ignos",
       es: "Desarrollador Full Stack en Ignos",
     },
-    period: {
-      en: "May 2026 - Present",
-      es: "Mayo 2026 - Actualidad",
-    },
+    startDate: "2026-05",
     description: {
       en: [
         "Working as a Full Stack Developer on product and internal tools at Ignos.",
